@@ -62,7 +62,7 @@
 
         function setDate($new_date)
         {
-            $this->date = (string) $new_date;
+            $this->date = $new_date;
         }
 
         function setUserId($new_user_id)
