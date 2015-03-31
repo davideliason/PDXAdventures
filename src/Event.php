@@ -90,6 +90,29 @@
             $this->setId($result['id']);
          }
 
+         function addActivity($activity)
+         {
+             $GLOBALS['DB']->exec("INSERT INTO activities_events (activity_id, event_id) VALUES ({$this->getId()}, {$activity->getId()});");
+         }
+
+         function getActivities()
+         {
+             $query = $GLOBALS['DB']->query("SELECT activities.* FROM
+                 events JOIN events_activities ON (events.id = events_activities.event_id)
+                        JOIN activities ON (events_activities.event_id = activities.id)
+                        WHERE events.id = {$this->getId()};");
+            $activity_ids = $query->fetchAll(PDO::FETCH_ASSOC);
+
+            $activities = array();
+            foreach ($activity_ids as $activity) {
+                $activity_name = $activity['activity_name'];
+                $id = $activity['id'];
+                $new_activity = new Activity($activity_name, $id);
+                array_push($activities, $new_activity);
+            }
+            return $activities;
+         }
+
          static function getAll()
          {
              $returned_events = $GLOBALS['DB']->query("SELECT * FROM events;");
@@ -112,7 +135,7 @@
              $GLOBALS['DB']->exec("DELETE FROM events *;");
          }
 
-         
+
 
 
 

@@ -299,9 +299,47 @@
             $test_event = new Event ($id, $date, $description, $event_name, $location, $user_id);
             $test_event->save();
 
+            $id = 2;
+            $activity_name = "Rowing";
             $test_activity = new Activity($id, $activity_name);
+            $test_activity->save();
 
             //Act
+            $test_event->addActivity($test_activity);
+
+            //Assert
+            $this->assertEquals($test_event->getActivity(), [$test_activity]);
+
+        }
+
+        function testGetActivities()
+        {
+            //Arrange
+            $id = 1;
+            $date = '2015-10-01 12:24:55';
+            $description = "26.5 miles of fun";
+            $event_name = "Portland Marathon";
+            $location = "Downtown Portland";
+            $user_id = 2;
+            $test_event = new Event ($id, $date, $description, $event_name, $location, $user_id);
+            $test_event->save();
+
+            $id2 = 2;
+            $activity_name = "Rowing";
+            $test_activity = new Activity($id2, $activity_name);
+            $test_activity->save();
+
+            $id3 = 3;
+            $activity_name2 = "Windsurfing";
+            $test_activity2 = new Activity($id3, $activity_name2);
+            $test_activity2->save();
+
+            //Act
+            $test_event->addActivity($test_activity);
+            $test_event2->addActivity($test_activity2);
+
+            //Assert
+            $this->assertEquals($test_event->getActivity(), [$test_activity, $test_activity2]);
 
         }
 
