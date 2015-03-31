@@ -37,7 +37,7 @@
 
         function setPassword($new_password)
         {
-            $this->password = (string) $new_password
+            $this->password = (string) $new_password;
         }
 
         function getPassword()
@@ -53,6 +53,30 @@
         function setId($new_id)
         {
             $this->id = $new_id;
+        }
+
+        function save()
+        {
+            $statement = $GLOBALS['DB']->query("INSERT INTO users (name,email,password) VALUES ('{$this->getName()}', '{$this->getEmail()}', '{$this->getPassword()}') RETURNING id;");
+            $result = $statement->fetch(PDO::FETCH_ASSOC);
+            $this->setId($result[0]);
+        }
+
+        function getAll()
+        {
+            $query = $GLOBALS['DB']->query("SELECT * FROM users;");
+
+            $returned_users = $query->fetchAll(PDO::FETCH_ASSOC);
+            $users = array();
+            foreach($returned_users as $user){
+                $name = $user['name'];
+                $email = $user['email'];
+                $password = $user['password'];
+                $id = $user['id'];
+                $new_user = new User($name, $email, $password, $id);
+                array_push($users, $new_user);
+            }
+            return $users;
         }
 
     }
