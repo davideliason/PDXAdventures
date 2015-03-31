@@ -13,7 +13,7 @@ psql import:
 
 
 psql commands:
-CREATE DATABASE test;
+CREATE DATABASE pdxadventure;
 CREATE TABLE event (id serial PRIMARY KEY, date_event timestamp, description varchar, event_name varchar, location varchar, user_id int);
 CREATE TABLE user (id serial PRIMARY KEY, name varchar, email varchar, password varchar);
 CREATE TABLE activities (id serial PRIMARY KEY, activity_name varchar);
