@@ -88,8 +88,31 @@
             $statement = $GLOBALS['DB']->query("INSERT INTO events (date_event, description, event_name, location, user_id) VALUES ('{$this->getDateEvent()}', '{$this->getDescription()}', '{$this->getEventName()}', '{$this->getLocation()}', {$this->getUserId()}) RETURNING id;");
             $result = $statement->fetch(PDO::FETCH_ASSOC);
             $this->setId($result['id']);
-
          }
+
+         static function getAll()
+         {
+             $returned_events = $GLOBALS['DB']->query("SELECT * FROM events;");
+             $events = array();
+             foreach($returned_events as $event) {
+                 $id = $event['id'];
+                 $date_event = $event['date_event'];
+                 $description = $event['description'];
+                 $event_name = $event['event_name'];
+                 $location = $event['location'];
+                 $user_id = $event['user_id'];
+                 $new_event = new Event($id, $date_event, $description, $event_name, $location, $user_id);
+                 array_push($events, $new_event);
+             }
+             return $events;
+         }
+
+         static function deleteAll()
+         {
+             $GLOBALS['DB']->exec("DELETE FROM events *;");
+         }
+
+         
 
 
 

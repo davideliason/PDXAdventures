@@ -11,6 +11,10 @@
 
     class EventTest extends PHPUnit_Framework_TestCase
     {
+        protected function tearDown()
+        {
+            Event::deleteAll();
+        }
 
         //SETTERS
         function test_getId()
@@ -220,7 +224,7 @@
             $test_event->save();
 
             //Act
-            $test_event = Event::getAll();
+            $result = Event::getAll();
 
             //Assert
             $this->assertEquals($test_event, $result[0]);
