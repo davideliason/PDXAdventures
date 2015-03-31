@@ -3,16 +3,16 @@
     class Event
     {
         private $id;
-        private $date;
+        private $date_event;
         private $description;
         private $event_name;
         private $location;
         private $user_id;
 
-        function __construct($id, $date, $description, $event_name, $location, $user_id)
+        function __construct($id, $date_event, $description, $event_name, $location, $user_id)
         {
             $this->id = $id;
-            $this->date = $date;
+            $this->date_event = $date_event;
             $this->description = $description;
             $this->event_name = $event_name;
             $this->location = $location;
@@ -26,9 +26,9 @@
             return $this->id;
         }
 
-        function getDate()
+        function getDateEvent()
         {
-            return $this->date;
+            return $this->date_event;
         }
 
         function getDescription()
@@ -59,7 +59,7 @@
 
         function setDate($new_date)
         {
-            $this->date = $new_date;
+            $this->date_event = $new_date;
         }
 
         function setDescription($new_description)
@@ -81,6 +81,15 @@
         {
                 $this->user_id = (int) $new_user_id;
         }
+
+        //DB FUNCTIONS
+        function save()
+        {
+            $statement = $GLOBALS['DB']->query("INSERT INTO events (date_event, description, event_name, location, user_id) VALUES ('{$this->getDateEvent()}', '{$this->getDescription()}', '{$this->getEventName()}', '{$this->getLocation()}', {$this->getUserId()}) RETURNING id;");
+            $result = $statement->fetch(PDO::FETCH_ASSOC);
+            $this->setId($result['id']);
+
+         }
 
 
 

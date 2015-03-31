@@ -30,7 +30,7 @@ SET default_tablespace = '';
 SET default_with_oids = false;
 
 --
--- Name: activities; Type: TABLE; Schema: public; Owner: brian; Tablespace: 
+-- Name: activities; Type: TABLE; Schema: public; Owner: Guest; Tablespace: 
 --
 
 CREATE TABLE activities (
@@ -39,10 +39,10 @@ CREATE TABLE activities (
 );
 
 
-ALTER TABLE public.activities OWNER TO brian;
+ALTER TABLE activities OWNER TO "Guest";
 
 --
--- Name: activities_events; Type: TABLE; Schema: public; Owner: brian; Tablespace: 
+-- Name: activities_events; Type: TABLE; Schema: public; Owner: Guest; Tablespace: 
 --
 
 CREATE TABLE activities_events (
@@ -52,10 +52,10 @@ CREATE TABLE activities_events (
 );
 
 
-ALTER TABLE public.activities_events OWNER TO brian;
+ALTER TABLE activities_events OWNER TO "Guest";
 
 --
--- Name: activities_events_id_seq; Type: SEQUENCE; Schema: public; Owner: brian
+-- Name: activities_events_id_seq; Type: SEQUENCE; Schema: public; Owner: Guest
 --
 
 CREATE SEQUENCE activities_events_id_seq
@@ -66,17 +66,17 @@ CREATE SEQUENCE activities_events_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.activities_events_id_seq OWNER TO brian;
+ALTER TABLE activities_events_id_seq OWNER TO "Guest";
 
 --
--- Name: activities_events_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: brian
+-- Name: activities_events_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: Guest
 --
 
 ALTER SEQUENCE activities_events_id_seq OWNED BY activities_events.id;
 
 
 --
--- Name: activities_id_seq; Type: SEQUENCE; Schema: public; Owner: brian
+-- Name: activities_id_seq; Type: SEQUENCE; Schema: public; Owner: Guest
 --
 
 CREATE SEQUENCE activities_id_seq
@@ -87,22 +87,22 @@ CREATE SEQUENCE activities_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.activities_id_seq OWNER TO brian;
+ALTER TABLE activities_id_seq OWNER TO "Guest";
 
 --
--- Name: activities_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: brian
+-- Name: activities_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: Guest
 --
 
 ALTER SEQUENCE activities_id_seq OWNED BY activities.id;
 
 
 --
--- Name: events; Type: TABLE; Schema: public; Owner: brian; Tablespace: 
+-- Name: events; Type: TABLE; Schema: public; Owner: Guest; Tablespace: 
 --
 
 CREATE TABLE events (
     id integer NOT NULL,
-    date timestamp without time zone,
+    date_event timestamp without time zone,
     description character varying,
     event_name character varying,
     location character varying,
@@ -110,10 +110,10 @@ CREATE TABLE events (
 );
 
 
-ALTER TABLE public.events OWNER TO brian;
+ALTER TABLE events OWNER TO "Guest";
 
 --
--- Name: events_id_seq; Type: SEQUENCE; Schema: public; Owner: brian
+-- Name: events_id_seq; Type: SEQUENCE; Schema: public; Owner: Guest
 --
 
 CREATE SEQUENCE events_id_seq
@@ -124,17 +124,17 @@ CREATE SEQUENCE events_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.events_id_seq OWNER TO brian;
+ALTER TABLE events_id_seq OWNER TO "Guest";
 
 --
--- Name: events_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: brian
+-- Name: events_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: Guest
 --
 
 ALTER SEQUENCE events_id_seq OWNED BY events.id;
 
 
 --
--- Name: users; Type: TABLE; Schema: public; Owner: brian; Tablespace: 
+-- Name: users; Type: TABLE; Schema: public; Owner: Guest; Tablespace: 
 --
 
 CREATE TABLE users (
@@ -145,10 +145,10 @@ CREATE TABLE users (
 );
 
 
-ALTER TABLE public.users OWNER TO brian;
+ALTER TABLE users OWNER TO "Guest";
 
 --
--- Name: users_id_seq; Type: SEQUENCE; Schema: public; Owner: brian
+-- Name: users_id_seq; Type: SEQUENCE; Schema: public; Owner: Guest
 --
 
 CREATE SEQUENCE users_id_seq
@@ -159,45 +159,45 @@ CREATE SEQUENCE users_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.users_id_seq OWNER TO brian;
+ALTER TABLE users_id_seq OWNER TO "Guest";
 
 --
--- Name: users_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: brian
+-- Name: users_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: Guest
 --
 
 ALTER SEQUENCE users_id_seq OWNED BY users.id;
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: brian
+-- Name: id; Type: DEFAULT; Schema: public; Owner: Guest
 --
 
 ALTER TABLE ONLY activities ALTER COLUMN id SET DEFAULT nextval('activities_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: brian
+-- Name: id; Type: DEFAULT; Schema: public; Owner: Guest
 --
 
 ALTER TABLE ONLY activities_events ALTER COLUMN id SET DEFAULT nextval('activities_events_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: brian
+-- Name: id; Type: DEFAULT; Schema: public; Owner: Guest
 --
 
 ALTER TABLE ONLY events ALTER COLUMN id SET DEFAULT nextval('events_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: brian
+-- Name: id; Type: DEFAULT; Schema: public; Owner: Guest
 --
 
 ALTER TABLE ONLY users ALTER COLUMN id SET DEFAULT nextval('users_id_seq'::regclass);
 
 
 --
--- Data for Name: activities; Type: TABLE DATA; Schema: public; Owner: brian
+-- Data for Name: activities; Type: TABLE DATA; Schema: public; Owner: Guest
 --
 
 COPY activities (id, activity_name) FROM stdin;
@@ -205,7 +205,7 @@ COPY activities (id, activity_name) FROM stdin;
 
 
 --
--- Data for Name: activities_events; Type: TABLE DATA; Schema: public; Owner: brian
+-- Data for Name: activities_events; Type: TABLE DATA; Schema: public; Owner: Guest
 --
 
 COPY activities_events (id, activity_id, event_id) FROM stdin;
@@ -213,36 +213,36 @@ COPY activities_events (id, activity_id, event_id) FROM stdin;
 
 
 --
--- Name: activities_events_id_seq; Type: SEQUENCE SET; Schema: public; Owner: brian
+-- Name: activities_events_id_seq; Type: SEQUENCE SET; Schema: public; Owner: Guest
 --
 
 SELECT pg_catalog.setval('activities_events_id_seq', 1, false);
 
 
 --
--- Name: activities_id_seq; Type: SEQUENCE SET; Schema: public; Owner: brian
+-- Name: activities_id_seq; Type: SEQUENCE SET; Schema: public; Owner: Guest
 --
 
 SELECT pg_catalog.setval('activities_id_seq', 1, false);
 
 
 --
--- Data for Name: events; Type: TABLE DATA; Schema: public; Owner: brian
+-- Data for Name: events; Type: TABLE DATA; Schema: public; Owner: Guest
 --
 
-COPY events (id, date, description, event_name, location, user_id) FROM stdin;
+COPY events (id, date_event, description, event_name, location, user_id) FROM stdin;
 \.
 
 
 --
--- Name: events_id_seq; Type: SEQUENCE SET; Schema: public; Owner: brian
+-- Name: events_id_seq; Type: SEQUENCE SET; Schema: public; Owner: Guest
 --
 
 SELECT pg_catalog.setval('events_id_seq', 1, false);
 
 
 --
--- Data for Name: users; Type: TABLE DATA; Schema: public; Owner: brian
+-- Data for Name: users; Type: TABLE DATA; Schema: public; Owner: Guest
 --
 
 COPY users (id, name, email, password) FROM stdin;
@@ -250,14 +250,14 @@ COPY users (id, name, email, password) FROM stdin;
 
 
 --
--- Name: users_id_seq; Type: SEQUENCE SET; Schema: public; Owner: brian
+-- Name: users_id_seq; Type: SEQUENCE SET; Schema: public; Owner: Guest
 --
 
 SELECT pg_catalog.setval('users_id_seq', 1, false);
 
 
 --
--- Name: activities_events_pkey; Type: CONSTRAINT; Schema: public; Owner: brian; Tablespace: 
+-- Name: activities_events_pkey; Type: CONSTRAINT; Schema: public; Owner: Guest; Tablespace: 
 --
 
 ALTER TABLE ONLY activities_events
@@ -265,7 +265,7 @@ ALTER TABLE ONLY activities_events
 
 
 --
--- Name: activities_pkey; Type: CONSTRAINT; Schema: public; Owner: brian; Tablespace: 
+-- Name: activities_pkey; Type: CONSTRAINT; Schema: public; Owner: Guest; Tablespace: 
 --
 
 ALTER TABLE ONLY activities
@@ -273,7 +273,7 @@ ALTER TABLE ONLY activities
 
 
 --
--- Name: events_pkey; Type: CONSTRAINT; Schema: public; Owner: brian; Tablespace: 
+-- Name: events_pkey; Type: CONSTRAINT; Schema: public; Owner: Guest; Tablespace: 
 --
 
 ALTER TABLE ONLY events
@@ -281,7 +281,7 @@ ALTER TABLE ONLY events
 
 
 --
--- Name: users_pkey; Type: CONSTRAINT; Schema: public; Owner: brian; Tablespace: 
+-- Name: users_pkey; Type: CONSTRAINT; Schema: public; Owner: Guest; Tablespace: 
 --
 
 ALTER TABLE ONLY users
@@ -289,12 +289,12 @@ ALTER TABLE ONLY users
 
 
 --
--- Name: public; Type: ACL; Schema: -; Owner: postgres
+-- Name: public; Type: ACL; Schema: -; Owner: epicodus
 --
 
 REVOKE ALL ON SCHEMA public FROM PUBLIC;
-REVOKE ALL ON SCHEMA public FROM postgres;
-GRANT ALL ON SCHEMA public TO postgres;
+REVOKE ALL ON SCHEMA public FROM epicodus;
+GRANT ALL ON SCHEMA public TO epicodus;
 GRANT ALL ON SCHEMA public TO PUBLIC;
 
 
