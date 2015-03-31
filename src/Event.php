@@ -3,17 +3,19 @@
     class Event
     {
         private $id;
-        private $event_name;
-        private $description;
         private $date;
+        private $description;
+        private $event_name;
+        private $location;
         private $user_id;
 
-        function __construct($id, $event_name, $description, $date, $user_id)
+        function __construct($id, $date, $description, $event_name, $location, $user_id)
         {
             $this->id = $id;
-            $this->event_name = $event_name;
-            $this->description = $description;
             $this->date = $date;
+            $this->description = $description;
+            $this->event_name = $event_name;
+            $this->location = $location;
             $this->user_id = $user_id;
         }
 
@@ -24,9 +26,9 @@
             return $this->id;
         }
 
-        function getEventName()
+        function getDate()
         {
-            return $this->event_name;
+            return $this->date;
         }
 
         function getDescription()
@@ -34,9 +36,14 @@
             return $this->description;
         }
 
-        function getDate()
+        function getEventName()
         {
-            return $this->date;
+            return $this->event_name;
+        }
+
+        function getLocation()
+        {
+            return $this->location;
         }
 
         function getUserId()
@@ -50,9 +57,9 @@
             $this->id = (int) $new_id;
         }
 
-        function setEventName($new_event_name)
+        function setDate($new_date)
         {
-            $this->event_name = (string) $new_event_name;
+            $this->date = $new_date;
         }
 
         function setDescription($new_description)
@@ -60,9 +67,14 @@
             $this->description = (string) $new_description;
         }
 
-        function setDate($new_date)
+        function setEventName($new_event_name)
         {
-            $this->date = $new_date;
+            $this->event_name = (string) $new_event_name;
+        }
+
+        function setLocation($new_location)
+        {
+            $this->location = (string) $new_location;
         }
 
         function setUserId($new_user_id)

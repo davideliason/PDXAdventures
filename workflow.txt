@@ -1,0 +1,35 @@
+1. If you are starting from scratch, create a repo in git, and copy repo filepath. If you have an existing remote repository, then you will clone it.
+
+2. Type the following into your terminal:
+git clone origin <repo_filepath> .
+
+3. Create a new branch and switch to it in your terminal:
+git checkout -b <branchname>
+
+4. Work on your branch until you're ready to commit. Then type the following into your terminal:
+git add . (to add files)
+git commit -m "Add.." (to commit changes).
+
+5. After committing, you are ready to merge your branch to the master. First, switch to master in your terminal:
+git checkout master
+
+6. Now, to merge your branch to the master, type the following in your terminal:
+git merge <branchname>
+
+7. There may be conflicts to resolve, which will appear in a new file in your text editor.  These need to be resolved locally in your text editor before you commit your branch. Once these are resolved, save and close the text editor file and type the following in terminal:
+git add .
+git commit -m "Add.."
+
+8. Then push from your local repo to the remote repository (GitHub), by typing the following into terminal:
+git push origin master
+
+9. Once this is done, delete your branch in terminal by typing:
+git branch -d <branchname>
+
+10. Then push delete to remote repo by typing:
+git push origin --delete <branchname>
+
+This is a complete workflow!  Yay
+_____
+*** VERY IMPORTANT ***
+1.  Each person working on the project 
