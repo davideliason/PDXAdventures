@@ -7,10 +7,15 @@
 
     require_once "src/Activity.php";
 
-    //$DB = new PDO('pgsql:host=localhost;dbname=adventure_test');
+    $DB = new PDO('pgsql:host=localhost;dbname=activities;user=brian;password=1234');
 
     class ActivityTest extends PHPUnit_Framework_TestCase
     {
+        protected function tearDown()
+        {
+            Activity::deleteAll();
+        }
+
         function test_getActivityName()
         {
             //Arrange
@@ -71,6 +76,44 @@
             //Assert
             $this->assertEquals(2, is_numeric($result));
         }
+
+        function test_save()
+        {
+            //Arrange
+            $id = 1;
+            $activity_name = "Running";
+            $test_activity = new Activity ($id, $activity_name);
+
+            //Act
+            $test_activity->save();
+            $result =Activity::getAll();
+
+            //Assert
+            $this->assertEquals([$test_activity], $result);
+        }
+
+        function test_getAll()
+        {
+            //Arrange
+            $id = 1;
+            $activity_name = "Running";
+            $test_activity = new Activity ($id, $activity_name);
+            $test_activity->save();
+
+            $id2 = 2;
+            $activity_name2 = "Swimming";
+            $test_activity2 = new Activity ($id2, $activity_name2);
+            $test_activity2->save();
+
+            //Act
+            $result =Activity::getAll();
+
+            //Assert
+            $this->assertEquals([$test_activity,$test_activity], $result);
+
+        }
+
+
 
     }//Ends class
 
