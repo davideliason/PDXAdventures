@@ -64,13 +64,13 @@
         {
 
             $statement = $GLOBALS['DB']->query("SELECT * FROM events WHERE user_id = {$this->getId()};");
-            $events_ids = $statment->fetchAll(PDO::FETCH_ASSOC);
+            $events_ids = $statement->fetchAll(PDO::FETCH_ASSOC);
 
             $events = array();
             foreach($events_ids as $event)
             {
                 $id = $event['id'];
-                $date_event = $event['date'];
+                $date_event = $event['date_event'];
                 $description = $event['description'];
                 $event_name = $event['event_name'];
                 $location = $event['location'];

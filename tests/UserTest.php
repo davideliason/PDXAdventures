@@ -6,6 +6,7 @@
     */
 
     require_once __DIR__.'/../src/User.php';
+    require_once __DIR__.'/../src/Event.php';
 
     $DB = new PDO('pgsql:host=localhost;dbname=pdxadventure_test');
 
@@ -14,6 +15,7 @@
         protected function tearDown()
         {
             User::deleteAll();
+            Event::deleteAll();
         }
 
         function test_getId()
@@ -210,6 +212,7 @@
             $this->assertEquals('123', $result);
         }
 
+
         function test_getEvents()
         {
             //Arrange
@@ -233,7 +236,7 @@
             //Act
             $result = $test_user->getEvents();
             //Assert
-            $this->assertEquals($test_event, $result);
+            $this->assertEquals([$test_event], $result);
         }
 
 

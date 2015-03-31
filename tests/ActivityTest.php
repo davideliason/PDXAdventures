@@ -8,7 +8,7 @@
     require_once "src/Activity.php";
 
 
-    $DB = new PDO('pgsql:host=localhost;dbname=activities');
+    $DB = new PDO('pgsql:host=localhost;dbname=pdxadventure_test');
 
     class ActivityTest extends PHPUnit_Framework_TestCase
     {
