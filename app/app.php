@@ -14,7 +14,7 @@
     $app->register(new Silex\Provider\TwigServiceProvider(), array(
     'twig.path'=> __DIR__.'/../views'
     ));
-    
+
     //creates route to homepage
     $app->get('/', function() use ($app) {
     return $app['twig']->render('index.twig', array('authors' => Author::getAll(), 'books' => Book::getAll()));

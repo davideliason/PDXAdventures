@@ -2,7 +2,83 @@
 
     class User
     {
-        
+        private $name;
+        private $email;
+        private $password;
+        private $id;
+
+        function __construct($name, $email, $password, $id = null)
+        {
+            $this->name = $name;
+            $this->email = $email;
+            $this->password = $password;
+            $this->id = $id;
+        }
+
+        function getName()
+        {
+            return $this->name;
+        }
+
+        function setName($new_name)
+        {
+            $this->name = (string) $new_name;
+        }
+
+        function setEmail($new_email)
+        {
+            $this->email = (string) $new_email;
+        }
+
+        function getEmail()
+        {
+            return $this->email;
+        }
+
+        function setPassword($new_password)
+        {
+            $this->password = (string) $new_password;
+        }
+
+        function getPassword()
+        {
+            return $this->password;
+        }
+
+        function getId()
+        {
+            return $this->id;
+        }
+
+        function setId($new_id)
+        {
+            $this->id = $new_id;
+        }
+
+        function save()
+        {
+            $statement = $GLOBALS['DB']->query("INSERT INTO users (name,email,password) VALUES ('{$this->getName()}', '{$this->getEmail()}', '{$this->getPassword()}') RETURNING id;");
+            $result = $statement->fetch(PDO::FETCH_ASSOC);
+            $this->setId($result[0]);
+        }
+
+        function getAll()
+        {
+            $query = $GLOBALS['DB']->query("SELECT * FROM users;");
+
+            $returned_users = $query->fetchAll(PDO::FETCH_ASSOC);
+            $users = array();
+            foreach($returned_users as $user){
+                $name = $user['name'];
+                $email = $user['email'];
+                $password = $user['password'];
+                $id = $user['id'];
+                $new_user = new User($name, $email, $password, $id);
+                array_push($users, $new_user);
+            }
+            return $users;
+        }
+
     }
 
 ?>
