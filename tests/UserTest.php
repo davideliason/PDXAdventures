@@ -7,10 +7,14 @@
 
     require_once __DIR__.'/../src/User.php';
 
-    // $DB = new PDO('pgsql:host=localhost;dbname=pdxadventure_test');
+    $DB = new PDO('pgsql:host=localhost;dbname=pdxadventure_test');
 
     class UserTest extends PHPUnit_Framework_TestCase
     {
+        protected function tearDown()
+        {
+            User::deleteAll();
+        }
 
         function test_getId()
         {
