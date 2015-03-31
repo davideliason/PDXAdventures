@@ -11,6 +11,10 @@
 
     class EventTest extends PHPUnit_Framework_TestCase
     {
+        protected function tearDown()
+        {
+            Event::deleteAll();
+        }
 
         //SETTERS
         function test_getId()
@@ -220,7 +224,7 @@
             $test_event->save();
 
             //Act
-            $test_event = Event::getAll();
+            $result = Event::getAll();
 
             //Assert
             $this->assertEquals($test_event, $result[0]);
@@ -281,6 +285,24 @@
             //Assert
             $result = Event::getAll();
             $this->assertEquals([], $result);
+        }
+
+        function testAddActivity()
+        {
+            //Arrange
+            $id = 1;
+            $date = '2015-10-01 12:24:55';
+            $description = "26.5 miles of fun";
+            $event_name = "Portland Marathon";
+            $location = "Downtown Portland";
+            $user_id = 2;
+            $test_event = new Event ($id, $date, $description, $event_name, $location, $user_id);
+            $test_event->save();
+
+            $test_activity = new Activity($id, $activity_name);
+
+            //Act
+
         }
 
 
