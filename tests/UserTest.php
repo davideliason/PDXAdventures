@@ -79,6 +79,75 @@
             $this->assertEquals('Tom', $name);
         }
 
+         function test_find()
+        {
+            //arrange
+            $name = 'Tom';
+            $email = 'tom@aol.com';
+            $password = '123';
+            $id = 1;
+            $test_user = new User($name, $email, $password, $id);
+            $test_user->save();
+
+            $name2 = 'Maggie';
+            $email2 = 'maggie@gmail.com';
+            $password2 = 'maggie124';
+            $id2 = 2;
+            $test_user2 = new User($name2, $email2, $password2, $id2);
+            $test_user2->save();
+            //act
+            $result = User::find($test_user->getId());
+            //assert
+            $this->assertEquals($test_user,$result);
+        }
+
+        function test_delete()
+        {
+            //arrange
+            $name = 'Tom';
+            $email = 'tom@aol.com';
+            $password = '123';
+            $id = 1;
+            $test_user = new User($name, $email, $password, $id);
+            $test_user->save();
+
+            $name2 = 'Maggie';
+            $email2 = 'maggie@gmail.com';
+            $password2 = 'maggie124';
+            $id2 = 2;
+            $test_user2 = new User($name2, $email2, $password2, $id2);
+            $test_user2->save();
+
+            //act
+            $test_user->delete();
+            $result = User::getAll();
+
+            //assert
+            $this->assertEquals($test_user2, $result[0]);
+        }
+
+        function test_update()
+        {
+            //Arrange
+            $name = 'Tom';
+            $email = 'tom@aol.com';
+            $password = '123';
+            $id = 1;
+            $test_user = new User($name, $email, $password, $id);
+            $test_user->save();
+
+            $new_name = 'Kyle';
+            $new_email = 'kgiardch@gmail.com';
+            $new_password = 'password';
+
+            //Act
+            $test_user->update($new_name, $new_email, $new_password);
+
+            //Assert
+            $this->assertEquals(['Kyle', 'kgiardch@gmail.com','password'], [$test_user->getName(), $test_user->getEmail(), $test_user->getPassword()]);
+
+        }
+
         function test_getEmail()
         {
             $name = 'Tom';
@@ -140,6 +209,33 @@
             //Assert
             $this->assertEquals('123', $result);
         }
+
+        function test_getEvents()
+        {
+            //Arrange
+            $name = 'Bob';
+            $email = 'bobo@aol.com';
+            $password = '123';
+            $id = 2;
+            $test_user = new User($name, $email, $password, $id);
+            $test_user->save();
+
+            $event_date = "2015-10-01 12:24:55";
+            $event_description = "running";
+            $event_name = "PDX Marathon";
+            $event_location = "pdx";
+            $id2 = 3;
+            $event_user_id = $test_user->getId();
+            $test_event = new Event($id2, $event_date, $event_description, $event_name, $event_location, $event_user_id);
+            $test_event->save();
+
+            // $id, $date, $description, $event_name, $location, $user_id
+            //Act
+            $result = $test_user->getEvents();
+            //Assert
+            $this->assertEquals($test_event, $result);
+        }
+
 
         function test_save()
         {
