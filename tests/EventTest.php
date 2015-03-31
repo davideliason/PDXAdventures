@@ -7,7 +7,7 @@
 
     require_once "src/Event.php";
 
-    //$DB = new PDO('pgsql:host=localhost;dbname=adventure_test');
+    $DB = new PDO('pgsql:host=localhost;dbname=pdxadventure_test');
 
     class EventTest extends PHPUnit_Framework_TestCase
     {
@@ -44,7 +44,7 @@
             $test_event = new Event ($id, $date, $description, $event_name, $location, $user_id);
 
             //Act
-            $result = $test_event->getDate();
+            $result = $test_event->getDateEvent();
 
             //Assert
             $this->assertEquals('2015-10-01 12:24:55', $result);
@@ -142,7 +142,7 @@
             $test_event->setDate('2016-11-01 12:24:55');
 
             //Assert
-            $result = $test_event->getDate();
+            $result = $test_event->getDateEvent();
             $this->assertEquals('2016-11-01 12:24:55', $result);
 
         }
@@ -206,7 +206,82 @@
 
         }
 
+        //DB FUNCTIONS
+        function test_save()
+        {
+            //Arrange
+            $id = 1;
+            $date = '2015-10-01 12:24:55';
+            $description = "26.5 miles of fun";
+            $event_name = "Portland Marathon";
+            $location = "Downtown Portland";
+            $user_id = 2;
+            $test_event = new Event ($id, $date, $description, $event_name, $location, $user_id);
+            $test_event->save();
 
+            //Act
+            $test_event = Event::getAll();
+
+            //Assert
+            $this->assertEquals($test_event, $result[0]);
+        }
+
+        function test_getAll()
+        {
+            //Arrange
+            $id = 1;
+            $date = '2015-10-01 12:24:55';
+            $description = "26.5 miles of fun";
+            $event_name = "Portland Marathon";
+            $location = "Downtown Portland";
+            $user_id = 2;
+            $test_event = new Event ($id, $date, $description, $event_name, $location, $user_id);
+            $test_event->save();
+
+            $id2 = 2;
+            $date2 = '2015-11-01 12:24:55';
+            $description2 = "soap box craziness";
+            $event_name2 = "Mount Tabor Soap Box Derby";
+            $location2 = "Mount Tabor";
+            $user_id2 = 2;
+            $test_event2 = new Event ($id2, $date2, $description2, $event_name2, $location2, $user_id2);
+            $test_event2->save();
+
+            //Act
+            $result = Event::getAll();
+
+            //Assert
+            $this->assertEquals([$test_event, $test_event2], $result);
+        }
+
+        function testdeleteAll()
+        {
+            //Arrange
+            $id = 1;
+            $date = '2015-10-01 12:24:55';
+            $description = "26.5 miles of fun";
+            $event_name = "Portland Marathon";
+            $location = "Downtown Portland";
+            $user_id = 2;
+            $test_event = new Event ($id, $date, $description, $event_name, $location, $user_id);
+            $test_event->save();
+
+            $id2 = 2;
+            $date2 = '2015-11-01 12:24:55';
+            $description2 = "soap box craziness";
+            $event_name2 = "Mount Tabor Soap Box Derby";
+            $location2 = "Mount Tabor";
+            $user_id2 = 2;
+            $test_event2 = new Event ($id2, $date2, $description2, $event_name2, $location2, $user_id2);
+            $test_event2->save();
+
+            //Act
+            Event::deleteAll();
+
+            //Assert
+            $result = Event::getAll();
+            $this->assertEquals([], $result);
+        }
 
 
     }//Ends class
