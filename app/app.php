@@ -46,11 +46,13 @@
 
     $app->get('/event/{id}', function($id) use ($app) {
         $selected_event = Event::find($id);
-        return $app['twig']->render('event.twig', array('event'=> $selected_event));
+        $user = $selected_event->getUsers();
+        return $app['twig']->render('event.twig', array('event'=> $selected_event, 'user' => $user));
     });
 
     $app->get('/event/{id}/edit', function($id) use ($app) {
         $event = Event::find($id);
+        $user = $selected_event->getUsers();
         return $app['twig']->render('event_edit.twig', array('event' => $event, 'user' => $user));
     });
 
@@ -70,7 +72,7 @@
         $new_description = $_POST['description'];
         $new_user_id = $selected_user->getId();
         $selected_event->update($new_date_event, $new_description, $new_event_name, $new_location, $user_id);
-        return $app['twig']->render('event.twig', array('event'=> $selected_event));
+        return $app['twig']->render('event.twig', array('event'=> $selected_event, 'user' => $selected_user));
     });
 
     return $app
