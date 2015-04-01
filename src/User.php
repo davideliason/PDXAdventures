@@ -50,7 +50,7 @@
             $this->phone = (string) $new_phone;
         }
 
-        function getPassword()
+        function getPhone()
         {
             return $this->phone;
         }
