@@ -17,7 +17,15 @@
 
     //creates route to homepage
     $app->get('/', function() use ($app) {
-    return $app['twig']->render('index.twig', array('authors' => Author::getAll(), 'books' => Book::getAll()));
+    return $app['twig']->render('index.twig', array('events' => Event::getAll(), 'activities' => Activity::getAll()));
+    });
+
+    $app->get('/create_event', function() use ($app) {
+        return $app['twig']->render('add_event.twig');
+    });
+
+    $app->post('/create_event', function() use ($app) {
+        return $app['twig']->render('add_success.twig', array('event' => Event))
     });
 
 
