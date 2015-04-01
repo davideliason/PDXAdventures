@@ -90,7 +90,7 @@
 
         function save()
         {
-            $statement = $GLOBALS['DB']->query("INSERT INTO users (name,email,phone) VALUES ('{$this->getName()}', '{$this->getEmail()}', '{$this->getPassword()}') RETURNING id;");
+            $statement = $GLOBALS['DB']->query("INSERT INTO users (name,email,phone) VALUES ('{$this->getName()}', '{$this->getEmail()}', '{$this->getPhone()}') RETURNING id;");
             $result = $statement->fetch(PDO::FETCH_ASSOC);
             $this->setId($result['id']);
         }
