@@ -29,8 +29,8 @@
     $app->post('/add_event', function() use ($app) {
         $name = $_POST['name'];
         $email = $_POST['email'];
-        $password = $_POST['password'];
-        $new_user = new User($name, $email, $password);
+        $phone = $_POST['phone'];
+        $new_user = new User($name, $email, $phone);
         $new_user->save();
 
         $event_name = $_POST['event_name'];
@@ -44,8 +44,13 @@
         return $app['twig']->render('add_success.twig', array('event'=> $new_event, 'user' => $new_user));
     });
 
+    $app->get('/event/{id}', function($id) use ($app) {
+        $selected_event = Event::find($id);
+        return $app['twig']->render('event.twig', array('event'=> $selected_event));
+    });
+
     $app->get('/event/{id}/edit', function($id) use ($app) {
-        $event = Event::find($id)
+        $event = Event::find($id);
         return $app['twig']->render('event_edit.twig', array('event' => $event, 'user' => $user));
     });
 
@@ -56,8 +61,8 @@
         $selected_user = User::find($user->getId());
         $new_user_name = $_POST['name'];
         $new_user_email = $_POST['email'];
-        $new_user_password = $_POST['password'];
-        $selected_user->update($new_user_name, $new_user_email, $new_user_password);
+        $new_user_phone = $_POST['phone'];
+        $selected_user->update($new_user_name, $new_user_email, $new_user_phone);
 
         $new_event_name = $_POST['event_name'];
         $new_date_event = $_POST['date_event'];
@@ -65,7 +70,7 @@
         $new_description = $_POST['description'];
         $new_user_id = $selected_user->getId();
         $selected_event->update($new_date_event, $new_description, $new_event_name, $new_location, $user_id);
-        return $app['twig']->render('event.twig', array(''))
+        return $app['twig']->render('event.twig', array('event'=> $selected_event));
     });
 
     return $app
