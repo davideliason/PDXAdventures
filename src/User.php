@@ -135,7 +135,8 @@
         //Grab all events associated with a particular user. Call GetEvents method on User object.
         function getEvents()
         {
-            $GLOBALS['DB']->query("SELECT * FROM events WHERE user_id = {$this->getId()};");
+            $query = $GLOBALS['DB']->query("SELECT * FROM events WHERE user_id = {$this->getId()};");
+            $events = $query->fetchAll(PDO::FETCH_ASSOC);
             $events_array = array();
 
             foreach($events as $event) {

@@ -152,26 +152,26 @@
             //assert
             $this->assertEquals($test_activity2, $result);
         }
-        function test_addEvent()
-        {
-            //assemble
-            $test_activity = new Activity(1, "swimming");
-            $test_activity->save();
-
-            $id = 1;
-            $date = '2015-10-01 12:24:55';
-            $description = "26.5 miles of fun";
-            $event_name = "Portland Marathon";
-            $location = "Downtown Portland";
-            $user_id = 2;
-            $test_event = new Event($id, $date, $description, $event_name, $location, $user_id);
-            $test_event->save();
-            //act
-            $test_activity->addEvent($test_event);
-            //assert
-            $this->assertEquals($test_activity->getEvent(), ['$test_event']);
-
-        }
+        // function test_addEvent()
+        // {
+        //     //assemble
+        //     $test_activity = new Activity(1, "swimming");
+        //     $test_activity->save();
+        //
+        //     $id = 1;
+        //     $date = '2015-10-01 12:24:55';
+        //     $description = "26.5 miles of fun";
+        //     $event_name = "Portland Marathon";
+        //     $location = "Downtown Portland";
+        //     $user_id = 2;
+        //     $test_event = new Event($id, $date, $description, $event_name, $location, $user_id);
+        //     $test_event->save();
+        //     //act
+        //     $test_activity->addEvent($test_event);
+        //     //assert
+        //     $this->assertEquals($test_activity->getEvent(), ['$test_event']);
+        //
+        // }
 
 
         // function test_getEvent()
