@@ -1,0 +1,20 @@
+<html>
+<head>
+    <title>Event Success</title>
+</head>
+<body>
+    <h1>You created an event</h1>
+    <p>Here are the details<p>
+        {{ event.getEventName }}
+        {{ event.getDateEvent }}
+        {{ event.getLocation }}
+        {{ event.getDescription }}
+    <p> The contact information for this event is:</p>
+        {{ user.getName }}
+        {{ user.getEmail }}
+        {{ user.getPhone }}
+
+    <a href='/'>Return to home</a>
+    <a href='/event/{{ event.getId }}/edit'>Edit this event</a>
+</body>
+</html>
