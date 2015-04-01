@@ -115,7 +115,7 @@
 
          function GetUsers()
          {
-             $GLOBALS['DB']->exec("SELECT user_id FROM ")
+             $GLOBALS['DB']->exec("SELECT user_id FROM ");
          }
 
          static function getAll()
