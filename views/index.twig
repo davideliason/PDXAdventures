@@ -1,0 +1,21 @@
+<html>
+<head>
+    <title>PDX Adventures</title>
+</head>
+<body>
+    <h1> Welcome to PDX Adventures</h1>
+
+    {% if events is not empty %}
+        {% for event in events %}
+            {{ event.getEventName }}
+            {{ event.getDateEvent }}
+            <p><a href='/event/{{ event.getId }}'>Click for more info</a></p>
+        {% endfor %}
+        <p><a href='/add_event'>Add an event</a></p>
+    {% else %}
+        <h2> Sorry, there are no events to display</h2>
+        <p><a href='/add_event'>Add an event</a></p>
+    {% endif %}
+
+</body>
+</html>
