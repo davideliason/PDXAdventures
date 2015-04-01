@@ -30,7 +30,7 @@
             $event_name = "Portland Marathon";
             $location = "Downtown Portland";
             $user_id = 2;
-            $test_event= new Event ($id, $date, $description, $event_name, $location, $user_id);
+            $test_event= new Event ($date, $description, $event_name, $location, $user_id, $id);
 
             //Act
             $result = $test_event->getId();
@@ -49,7 +49,7 @@
             $event_name = "Portland Marathon";
             $location = "Downtown Portland";
             $user_id = 2;
-            $test_event = new Event ($id, $date, $description, $event_name, $location, $user_id);
+            $test_event = new Event ($date, $description, $event_name, $location, $user_id, $id);
 
             //Act
             $result = $test_event->getDateEvent();
@@ -68,7 +68,7 @@
             $event_name = "Portland Marathon";
             $location = "Downtown Portland";
             $user_id = 2;
-            $test_event = new Event ($id, $date, $description, $event_name, $location, $user_id);
+            $test_event = new Event ($date, $description, $event_name, $location, $user_id, $id);
 
             //Act
             $result = $test_event->getEventName();
@@ -86,7 +86,7 @@
             $event_name = "Portland Marathon";
             $location = "Downtown Portland";
             $user_id = 2;
-            $test_event = new Event ($id, $date, $description, $event_name, $location, $user_id);
+            $test_event = new Event ($date, $description, $event_name, $location, $user_id, $id);
 
             //Act
             $result = $test_event->getLocation();
@@ -105,7 +105,7 @@
             $event_name = "Portland Marathon";
             $location = "Downtown Portland";
             $user_id = 2;
-            $test_event = new Event ($id, $date, $description, $event_name, $location, $user_id);
+            $test_event = new Event ($date, $description, $event_name, $location, $user_id, $id);
 
             //Act
             $result = $test_event->getUserId();
@@ -124,7 +124,7 @@
             $event_name = "Portland Marathon";
             $location = "Downtown Portland";
             $user_id = 2;
-            $test_event= new Event ($id, $date, $description, $event_name, $location, $user_id);
+            $test_event= new Event ($date, $description, $event_name, $location, $user_id, $id);
 
             //Act
             $test_event->setId(2);
@@ -144,7 +144,7 @@
             $event_name = "Portland Marathon";
             $location = "Downtown Portland";
             $user_id = 2;
-            $test_event = new Event ($id, $date, $description, $event_name, $location, $user_id);
+            $test_event = new Event ($date, $description, $event_name, $location, $user_id, $id);
 
             //Act
             $test_event->setDate('2016-11-01 12:24:55');
@@ -164,7 +164,7 @@
             $event_name = "Portland Marathon";
             $location = "Downtown Portland";
             $user_id = 2;
-            $test_event = new Event ($id, $date, $description, $event_name, $location, $user_id);
+            $test_event = new Event ($date, $description, $event_name, $location, $user_id, $id);
 
             //Act
             $test_event->setEventName("Mt Tabor Soap Box Derby");
@@ -183,7 +183,7 @@
             $event_name = "Portland Marathon";
             $location = "Downtown Portland";
             $user_id = 2;
-            $test_event = new Event ($id, $date, $description, $event_name, $location, $user_id);
+            $test_event = new Event ($date, $description, $event_name, $location, $user_id, $id);
 
             //Act
             $test_event->setLocation("Hillsboro");
@@ -203,7 +203,7 @@
             $event_name = "Portland Marathon";
             $location = "Downtown Portland";
             $user_id = 2;
-            $test_event = new Event ($id, $date, $description, $event_name, $location, $user_id);
+            $test_event = new Event ($date, $description, $event_name, $location, $user_id, $id);
 
             //Act
             $test_event->setUserId(3);
@@ -224,7 +224,7 @@
             $event_name = "Portland Marathon";
             $location = "Downtown Portland";
             $user_id = 2;
-            $test_event = new Event ($id, $date, $description, $event_name, $location, $user_id);
+            $test_event = new Event ($date, $description, $event_name, $location, $user_id, $id);
             $test_event->save();
 
             //Act
@@ -243,7 +243,7 @@
             $event_name = "Portland Marathon";
             $location = "Downtown Portland";
             $user_id = 2;
-            $test_event = new Event ($id, $date, $description, $event_name, $location, $user_id);
+            $test_event = new Event ($date, $description, $event_name, $location, $user_id, $id);
             $test_event->save();
 
             $id2 = 2;
@@ -252,7 +252,7 @@
             $event_name2 = "Mount Tabor Soap Box Derby";
             $location2 = "Mount Tabor";
             $user_id2 = 2;
-            $test_event2 = new Event ($id2, $date2, $description2, $event_name2, $location2, $user_id2);
+            $test_event2 = new Event ($date, $description, $event_name, $location, $user_id, $id);
             $test_event2->save();
 
             //Act
@@ -271,7 +271,7 @@
             $event_name = "Portland Marathon";
             $location = "Downtown Portland";
             $user_id = 2;
-            $test_event = new Event ($id, $date, $description, $event_name, $location, $user_id);
+            $test_event = new Event ($date, $description, $event_name, $location, $user_id, $id);
             $test_event->save();
 
             $id2 = 2;
@@ -280,7 +280,7 @@
             $event_name2 = "Mount Tabor Soap Box Derby";
             $location2 = "Mount Tabor";
             $user_id2 = 2;
-            $test_event2 = new Event ($id2, $date2, $description2, $event_name2, $location2, $user_id2);
+            $test_event2 = new Event ($date, $description, $event_name, $location, $user_id, $id);
             $test_event2->save();
 
             //Act
@@ -291,64 +291,36 @@
             $this->assertEquals([], $result);
         }
 
-        function testaddActivity()
+
+        function testgetActivities()
         {
             //Arrange
-            $id = 1;
             $date = '2015-10-01 12:24:55';
             $description = "26.5 miles of fun";
             $event_name = "Portland Marathon";
             $location = "Downtown Portland";
             $user_id = 2;
-            $test_event = new Event ($id, $date, $description, $event_name, $location, $user_id);
+            $test_event = new Event ($date, $description, $event_name, $location, $user_id);
             $test_event->save();
 
 
-            $id = 2;
             $activity_name = "Rowing";
-            $test_activity = new Activity($id, $activity_name);
+            $test_activity = new Activity($activity_name);
             $test_activity->save();
 
 
+            $activity_name2 = "Windsurfing";
+            $test_activity2 = new Activity($activity_name2);
+            $test_activity2->save();
+
             //Act
-            $expected = $test_event->addActivity($test_activity);
+            $test_event->addActivity($test_activity);
+            $test_event->addActivity($test_activity2);
             $result = $test_event->getActivities();
-            var_dump($result);
-            var_dump($expected);
+
             //Assert
-            $this->assertEquals([$test_activity], $result);
-
+            $this->assertEquals([$test_activity, $test_activity2], $result);
         }
-
-        // function testgetActivities()
-        // {
-        //     //Arrange
-        //     $id = 1;
-        //     $date = '2015-10-01 12:24:55';
-        //     $description = "26.5 miles of fun";
-        //     $event_name = "Portland Marathon";
-        //     $location = "Downtown Portland";
-        //     $user_id = 2;
-        //     $test_event = new Event ($id, $date, $description, $event_name, $location, $user_id);
-        //     $test_event->save();
-        //
-        //     $id2 = 2;
-        //     $activity_name = "Rowing";
-        //     $test_activity = new Activity($id2, $activity_name);
-        //     $test_activity->save();
-        //
-        //     $id3 = 3;
-        //     $activity_name2 = "Windsurfing";
-        //     $test_activity2 = new Activity($id3, $activity_name2);
-        //     $test_activity2->save();
-        //
-        //     //Act
-        //     $test_event->addActivity($test_activity);
-        //     $test_event->addActivity($test_activity2);
-        //
-        //     //Assert
-        //     $this->assertEquals($test_event->getActivities(), ($test_activity, $test_activity2));
-        // }
 
 
 

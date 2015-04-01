@@ -16,6 +16,7 @@
         {
             User::deleteAll();
             Event::deleteAll();
+            Activity::deleteAll();
         }
 
         function test_getId()
@@ -219,20 +220,18 @@
             $name = 'Bob';
             $email = 'bobo@aol.com';
             $phone = '123';
-            $id = 2;
-            $test_user = new User($name, $email, $phone, $id);
+
+            $test_user = new User($name, $email, $phone);
             $test_user->save();
 
-            $event_date = "2015-10-01 12:24:55";
-            $event_description = "running";
+            $date_event = "2015-10-01 12:24:55";
+            $description = "running";
             $event_name = "PDX Marathon";
-            $event_location = "pdx";
-            $id2 = 3;
-            $event_user_id = $test_user->getId();
-            $test_event = new Event($id2, $event_date, $event_description, $event_name, $event_location, $event_user_id);
+            $location = "pdx";
+            $user_id = $test_user->getId();
+            $test_event = new Event($date_event, $description, $event_name, $location, $user_id);
             $test_event->save();
 
-            // $id, $date, $description, $event_name, $location, $user_id
             //Act
             $result = $test_user->getEvents();
             //Assert
@@ -246,8 +245,7 @@
             $name = 'Tom';
             $email = 'tom@aol.com';
             $phone = '123';
-            $id = 1;
-            $test_user = new User($name, $email, $phone, $id);
+            $test_user = new User($name, $email, $phone);
             //Act
             $test_user->save();
             $result = User::getAll();

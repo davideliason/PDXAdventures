@@ -21,9 +21,9 @@
         function test_getActivityName()
         {
             //Arrange
-            $id = 1;
+
             $activity_name = "Running";
-            $test_activity = new Activity ($id, $activity_name);
+            $test_activity = new Activity ($activity_name);
 
             //Act
             $result = $test_activity->getActivityName();
@@ -37,7 +37,7 @@
             //Arrange
             $id = 1;
             $activity_name = "Running";
-            $test_activity = new Activity ($id, $activity_name);
+            $test_activity = new Activity ($activity_name, $id);
 
             //Act
             $result = $test_activity->getId();
@@ -51,7 +51,7 @@
             //Arrange
             $id = 1;
             $activity_name = "Running";
-            $test_activity = new Activity ($id, $activity_name);
+            $test_activity = new Activity ($activity_name, $id);
 
             //Act
             $new_name = "Swiming";
@@ -67,7 +67,7 @@
             //Arrange
             $id = 1;
             $activity_name = "Running";
-            $test_activity = new Activity ($id, $activity_name);
+            $test_activity = new Activity ($activity_name, $id);
 
             //Act
             $new_id = 2;
@@ -84,7 +84,7 @@
             //Arrange
             $id = 1;
             $activity_name = "Running";
-            $test_activity = new Activity ($id, $activity_name);
+            $test_activity = new Activity ($activity_name, $id);
 
             //Act
             $test_activity->save();
@@ -99,12 +99,12 @@
             //Arrange
             $id = 1;
             $activity_name = "Running";
-            $test_activity = new Activity ($id, $activity_name);
+            $test_activity = new Activity ($activity_name, $id);
             $test_activity->save();
 
             $id2 = 2;
             $activity_name2 = "Swimming";
-            $test_activity2 = new Activity ($id2, $activity_name2);
+            $test_activity2 = new Activity ($activity_name2, $id2);
             $test_activity2->save();
 
             //Act
@@ -164,7 +164,7 @@
         //     $event_name = "Portland Marathon";
         //     $location = "Downtown Portland";
         //     $user_id = 2;
-        //     $test_event = new Event($id, $date, $description, $event_name, $location, $user_id);
+        //     $test_event = new Event($date, $description, $event_name, $location, $user_id, $id);
         //     $test_event->save();
         //     //act
         //     $test_activity->addEvent($test_event);
@@ -188,7 +188,7 @@
         //         $event_name = "Portland Marathon";
         //         $location = "Downtown Portland";
         //         $user_id = 2;
-        //         $test_event = new Event ($id, $date, $description, $event_name, $location, $user_id);
+        //         $test_event = new Event ($date, $description, $event_name, $location, $user_id, $id);
         //         $test_event->save();
         //
         //         $id2 = 2;
@@ -218,7 +218,7 @@
         //         $event_name = "Portland Marathon";
         //         $location = "Downtown Portland";
         //         $user_id = 4;
-        //         $test_event = new Event ($id, $date, $description, $event_name, $location, $user_id);
+        //         $test_event = new Event ($date, $description, $event_name, $location, $user_id, $id);
         //         $test_event->save();
         //
         //         $name = 'Tom';

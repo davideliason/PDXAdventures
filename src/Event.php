@@ -9,7 +9,7 @@
         private $location;
         private $user_id;
 
-        function __construct($id, $date_event, $description, $event_name, $location, $user_id)
+        function __construct($date_event, $description, $event_name, $location, $user_id, $id=null)
         {
             $this->id = $id;
             $this->date_event = $date_event;
@@ -115,7 +115,7 @@
          {
              $query = $GLOBALS['DB']->query("SELECT activities.* FROM
                  events JOIN activities_events ON (events.id = activities_events.event_id)
-                        JOIN activities ON (activities_events.event_id = activities.id)
+                        JOIN activities ON (activities_events.activity_id = activities.id)
                         WHERE events.id = {$this->getId()};");
             $activity_ids = $query->fetchAll(PDO::FETCH_ASSOC);
 
@@ -123,7 +123,7 @@
             foreach ($activity_ids as $activity) {
                 $activity_name = $activity['activity_name'];
                 $id = $activity['id'];
-                $new_activity = new Activity($id, $activity_name);
+                $new_activity = new Activity($activity_name, $id);
                 array_push($activities, $new_activity);
             }
             return $activities;
@@ -157,7 +157,7 @@
                  $event_name = $event['event_name'];
                  $location = $event['location'];
                  $user_id = $event['user_id'];
-                 $new_event = new Event($id, $date_event, $description, $event_name, $location, $user_id);
+                 $new_event = new Event($date_event, $description, $event_name, $location, $user_id, $id);
                  array_push($events, $new_event);
              }
              return $events;

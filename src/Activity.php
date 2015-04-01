@@ -4,7 +4,7 @@
             private $id;
             private $activity_name;
 
-            function __construct($id_new, $activity_new)
+            function __construct($activity_new, $id_new=null)
             {
                 $this->id = $id_new;
                 $this->activity_name = $activity_new;
@@ -50,7 +50,7 @@
             }
 
             // static functions
-            
+
             static function find($search)
             {
                 $found = null;
@@ -74,7 +74,7 @@
                 foreach($statement as $activity){
                     $activity_name = $activity['activity_name'];
                     $id = $activity['id'];
-                    $activity_item = new Activity($id, $activity_name);
+                    $activity_item = new Activity($activity_name, $id);
                     array_push($all_activities, $activity_item);
                 }
                 return $all_activities;
