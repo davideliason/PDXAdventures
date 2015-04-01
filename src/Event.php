@@ -113,11 +113,6 @@
             return $activities;
          }
 
-         function GetUsers()
-         {
-             $GLOBALS['DB']->exec("SELECT user_id FROM ")
-         }
-
          static function getAll()
          {
              $returned_events = $GLOBALS['DB']->query("SELECT * FROM events;");
