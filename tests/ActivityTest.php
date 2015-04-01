@@ -6,6 +6,7 @@
     */
 
     require_once "src/Activity.php";
+    require_once "src/Event.php";
 
 
     $DB = new PDO('pgsql:host=localhost;dbname=pdxadventure_test');
@@ -87,7 +88,7 @@
 
             //Act
             $test_activity->save();
-            $result =Activity::getAll();
+            $result = Activity::getAll();
 
             //Assert
             $this->assertEquals([$test_activity], $result);
@@ -107,22 +108,141 @@
             $test_activity2->save();
 
             //Act
-            $result =Activity::getAll();
+            $result = Activity::getAll();
 
             //Assert
-            $this->assertEquals([$test_activity,$test_activity], $result);
+            $this->assertEquals([$test_activity,$test_activity2], $result);
 
         }
 
-        function test_AddEvent()
+        function test_update()
         {
-
+            //assemble
+            $test_activity = new Activity (1,"running");
+            $test_activity->save();
+            //act
+            $test_activity->update("eating");
+            $result = $test_activity->getActivityName();
+            //assert
+            $this->assertEquals("eating", $result);
         }
 
-        function test_GetEvents()
+        function test_delete()
         {
-            
+            //assemble
+            $test_activity = new Activity(1, "running");
+            $test_activity->save();
+            $test_activity->delete();
+            //act
+            $result = Activity::getAll();
+            //assert
+            $this->assertEquals([], $result);
         }
+
+        function test_find()
+        {
+            //assemble
+            $test_activity = new Activity(1, "running");
+            $test_activity->save();
+
+            $test_activity2 = new Activity(2, "running2");
+            $test_activity2->save();
+            //act
+            $result = Activity::find($test_activity2->getId());
+            //assert
+            $this->assertEquals($test_activity2, $result);
+        }
+        function test_addEvent()
+        {
+            //assemble
+            $test_activity = new Activity(1, "swimming");
+            $test_activity->save();
+
+            $id = 1;
+            $date = '2015-10-01 12:24:55';
+            $description = "26.5 miles of fun";
+            $event_name = "Portland Marathon";
+            $location = "Downtown Portland";
+            $user_id = 2;
+            $test_event = new Event($id, $date, $description, $event_name, $location, $user_id);
+            $test_event->save();
+            //act
+            $test_activity->addEvent($test_event);
+            //assert
+            $this->assertEquals($test_activity->getEvent(), ['$test_event']);
+
+        }
+
+
+        // function test_getEvent()
+        // {
+        //
+        // }
+
+        //      function testGetActivities()
+        //     {
+        //         //Arrange
+        //         $id = 1;
+        //         $date = '2015-10-01 12:24:55';
+        //         $description = "26.5 miles of fun";
+        //         $event_name = "Portland Marathon";
+        //         $location = "Downtown Portland";
+        //         $user_id = 2;
+        //         $test_event = new Event ($id, $date, $description, $event_name, $location, $user_id);
+        //         $test_event->save();
+        //
+        //         $id2 = 2;
+        //         $activity_name = "Rowing";
+        //         $test_activity = new Activity($id2, $activity_name);
+        //         $test_activity->save();
+        //
+        //         $id3 = 3;
+        //         $activity_name2 = "Windsurfing";
+        //         $test_activity2 = new Activity($id3, $activity_name2);
+        //         $test_activity2->save();
+        //
+        //         //Act
+        //         $test_event->addActivity($test_activity);
+        //         $test_event2->addActivity($test_activity2);
+        //
+        //         //Assert
+        //         $this->assertEquals($test_event->getActivity(), [$test_activity, $test_activity2]);
+        //     }
+        //
+        //     function test_GetUsers()
+        // {
+        //         //Arrange
+        //         $id = 3;
+        //         $date = '2015-10-01 12:24:55';
+        //         $description = "26.5 miles of fun";
+        //         $event_name = "Portland Marathon";
+        //         $location = "Downtown Portland";
+        //         $user_id = 4;
+        //         $test_event = new Event ($id, $date, $description, $event_name, $location, $user_id);
+        //         $test_event->save();
+        //
+        //         $name = 'Tom';
+        //         $email = 'tom@aol.com';
+        //         $phone = '123';
+        //         $id = 1;
+        //         $test_user = new User($name, $email, $phone, $id);
+        //         $test_user->save();
+        //
+        //         $name2 = 'Bob';
+        //         $email2 = 'bob@aol.com';
+        //         $phone2 = '124';
+        //         $id2 = 2;
+        //         $test_user2 = new User($name2, $email2, $phone2, $id2);
+        //         $test_user2->save();
+        //
+        //         //Act
+        //         $test_event->addUser($test_user);
+        //         $test_event2->addUser($test_user2);
+        //
+        //         //Assert
+        //         $result = $test_event->getUsers();
+        //         $this->assertEquals([$test_user, $test_user2], $result);
+        // }
 
 
 
