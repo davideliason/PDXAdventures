@@ -90,6 +90,22 @@
             $this->setId($result['id']);
          }
 
+         static function find($search_id)
+         {
+             $found_event = null;
+             $search = Event::getAll();
+             foreach ($events as $event)
+             {
+                 //getting event_id on Event id object
+                 $event_id = $event->getId();
+                 if ($event_id == $search_id)
+                 {
+                     $found_event = $event;
+                 }
+             }
+           return $found_event;
+         }
+
          function addActivity($activity)
          {
              $GLOBALS['DB']->exec("INSERT INTO activities_events (activity_id, event_id) VALUES ({$this->getId()}, {$activity->getId()});");
