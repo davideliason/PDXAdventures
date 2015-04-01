@@ -141,7 +141,7 @@ CREATE TABLE users (
     id integer NOT NULL,
     name character varying,
     email character varying,
-    password character varying
+    phone character varying
 );
 
 
@@ -245,7 +245,7 @@ SELECT pg_catalog.setval('events_id_seq', 1, false);
 -- Data for Name: users; Type: TABLE DATA; Schema: public; Owner: Guest
 --
 
-COPY users (id, name, email, password) FROM stdin;
+COPY users (id, name, email, phone) FROM stdin;
 \.
 
 
