@@ -49,8 +49,28 @@
                 $GLOBALS['DB']->exec("DELETE FROM activities WHERE id = {$this->getId()};");
             }
 
+            /*
+            function getEvents()
+            {
+                $GLOBALS['DB']->query("SELECT * FROM events WHERE user_id = {$this->getId()};");
+                $events_array = array();
+
+                foreach($events as $event) {
+                    $id = $event['id'];
+                    $date_event = $event['date_event'];
+                    $description = $event['description'];
+                    $event_name = $event['event_name'];
+                    $location = $event['location'];
+                    $user_id = $event['user_id'];
+                    $new_event = new Event($id, $date_event, $description, $location, $user_id);
+                    array_push($events_array, $new_event);
+                }
+                return $events_array;
+            }
+            */
+
             // static functions
-            
+
             static function find($search)
             {
                 $found = null;
