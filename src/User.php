@@ -4,14 +4,14 @@
     {
         private $name;
         private $email;
-        private $password;
+        private $phone;
         private $id;
 
-        function __construct($name, $email, $password, $id = null)
+        function __construct($name, $email, $phone, $id = null)
         {
             $this->name = $name;
             $this->email = $email;
-            $this->password = $password;
+            $this->phone = $phone;
             $this->id = $id;
         }
 
@@ -35,14 +35,14 @@
             return $this->email;
         }
 
-        function setPassword($new_password)
+        function setPhone($new_phone)
         {
-            $this->password = (string) $new_password;
+            $this->phone = (string) $new_phone;
         }
 
         function getPassword()
         {
-            return $this->password;
+            return $this->phone;
         }
 
         function getId()
@@ -100,17 +100,17 @@
 
         function save()
         {
-            $statement = $GLOBALS['DB']->query("INSERT INTO users (name,email,password) VALUES ('{$this->getName()}', '{$this->getEmail()}', '{$this->getPassword()}') RETURNING id;");
+            $statement = $GLOBALS['DB']->query("INSERT INTO users (name,email,phone) VALUES ('{$this->getName()}', '{$this->getEmail()}', '{$this->getPassword()}') RETURNING id;");
             $result = $statement->fetch(PDO::FETCH_ASSOC);
             $this->setId($result['id']);
         }
 
-        function update($new_name, $new_email, $new_password)
+        function update($new_name, $new_email, $new_phone)
         {
-            $GLOBALS['DB']->exec("UPDATE users SET (name, email, password) = ('{$new_name}', '{$new_email}', '{$new_password}') WHERE id = {$this->getId()};");
+            $GLOBALS['DB']->exec("UPDATE users SET (name, email, phone) = ('{$new_name}', '{$new_email}', '{$new_phone}') WHERE id = {$this->getId()};");
             $this->setName($new_name);
             $this->setEmail($new_email);
-            $this->setPassword($new_password);
+            $this->setPhone($new_phone);
         }
 
         static function getAll()
@@ -122,9 +122,9 @@
             foreach($returned_users as $user){
                 $name = $user['name'];
                 $email = $user['email'];
-                $password = $user['password'];
+                $phone = $user['phone'];
                 $id = $user['id'];
-                $new_user = new User($name, $email, $password, $id);
+                $new_user = new User($name, $email, $phone, $id);
                 array_push($users, $new_user);
             }
             return $users;

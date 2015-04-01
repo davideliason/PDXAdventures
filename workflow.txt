@@ -1,7 +1,7 @@
 1. If you are starting from scratch, create a repo in git, and copy repo filepath. If you have an existing remote repository, then you will clone it.
 
 2. Type the following into your terminal:
-git clone origin <repo_filepath> .
+git clone <repo_filepath> .
 
 3. Create a new branch and switch to it in your terminal:
 git checkout -b <branchname>
@@ -32,4 +32,4 @@ git push origin --delete <branchname>
 This is a complete workflow!  Yay
 _____
 *** VERY IMPORTANT ***
-1.  Each person working on the project 
+1.  Each person working on the project

@@ -23,9 +23,9 @@
             //arrange
             $name = 'Tom';
             $email = 'tom@aol.com';
-            $password = '123';
+            $phone = '123';
             $id = 1;
-            $test_user = new User($name, $email, $password, $id);
+            $test_user = new User($name, $email, $phone, $id);
             //act
             $result = $test_user->getId();
             //assert
@@ -37,9 +37,9 @@
             //arrange
             $name = 'Tom';
             $email = 'tom@aol.com';
-            $password = '123';
+            $phone = '123';
             $id = 1;
-            $test_user = new User($name, $email, $password, $id);
+            $test_user = new User($name, $email, $phone, $id);
 
             //act
             $test_user->setId(2);
@@ -53,9 +53,9 @@
             //arrange
             $name = 'Tom';
             $email = 'tom@aol.com';
-            $password = '123';
+            $phone = '123';
             $id = 1;
-            $test_user = new User($name, $email, $password, $id);
+            $test_user = new User($name, $email, $phone, $id);
 
             //act
             $test_user->setName('daniel');
@@ -70,9 +70,9 @@
             //arrange
             $name = 'Tom';
             $email = 'tom@aol.com';
-            $password = '123';
+            $phone = '123';
             $id = 1;
-            $test_user = new User($name, $email, $password, $id);
+            $test_user = new User($name, $email, $phone, $id);
 
             //act
             $result = $test_user->getName();
@@ -86,16 +86,16 @@
             //arrange
             $name = 'Tom';
             $email = 'tom@aol.com';
-            $password = '123';
+            $phone = '123';
             $id = 1;
-            $test_user = new User($name, $email, $password, $id);
+            $test_user = new User($name, $email, $phone, $id);
             $test_user->save();
 
             $name2 = 'Maggie';
             $email2 = 'maggie@gmail.com';
-            $password2 = 'maggie124';
+            $phone2 = 'maggie124';
             $id2 = 2;
-            $test_user2 = new User($name2, $email2, $password2, $id2);
+            $test_user2 = new User($name2, $email2, $phone2, $id2);
             $test_user2->save();
             //act
             $result = User::find($test_user->getId());
@@ -108,16 +108,16 @@
             //arrange
             $name = 'Tom';
             $email = 'tom@aol.com';
-            $password = '123';
+            $phone = '123';
             $id = 1;
-            $test_user = new User($name, $email, $password, $id);
+            $test_user = new User($name, $email, $phone, $id);
             $test_user->save();
 
             $name2 = 'Maggie';
             $email2 = 'maggie@gmail.com';
-            $password2 = 'maggie124';
+            $phone2 = 'maggie124';
             $id2 = 2;
-            $test_user2 = new User($name2, $email2, $password2, $id2);
+            $test_user2 = new User($name2, $email2, $phone2, $id2);
             $test_user2->save();
 
             //act
@@ -133,20 +133,20 @@
             //Arrange
             $name = 'Tom';
             $email = 'tom@aol.com';
-            $password = '123';
+            $phone = '123';
             $id = 1;
-            $test_user = new User($name, $email, $password, $id);
+            $test_user = new User($name, $email, $phone, $id);
             $test_user->save();
 
             $new_name = 'Kyle';
             $new_email = 'kgiardch@gmail.com';
-            $new_password = 'password';
+            $new_phone = 'phone';
 
             //Act
-            $test_user->update($new_name, $new_email, $new_password);
+            $test_user->update($new_name, $new_email, $new_phone);
 
             //Assert
-            $this->assertEquals(['Kyle', 'kgiardch@gmail.com','password'], [$test_user->getName(), $test_user->getEmail(), $test_user->getPassword()]);
+            $this->assertEquals(['Kyle', 'kgiardch@gmail.com','phone'], [$test_user->getName(), $test_user->getEmail(), $test_user->getPhone()]);
 
         }
 
@@ -154,9 +154,9 @@
         {
             $name = 'Tom';
             $email = 'tom@aol.com';
-            $password = '123';
+            $phone = '123';
             $id = 1;
-            $test_user = new User($name, $email, $password, $id);
+            $test_user = new User($name, $email, $phone, $id);
 
             //act
             $result = $test_user->getEmail();
@@ -170,9 +170,9 @@
             //arrange
             $name = 'Tom';
             $email = 'tom@aol.com';
-            $password = '123';
+            $phone = '123';
             $id = 1;
-            $test_user = new User($name, $email, $password, $id);
+            $test_user = new User($name, $email, $phone, $id);
             //act
             $test_user->setEmail('new_tom@aol.com');
             $result=$test_user->getEmail();
@@ -180,33 +180,33 @@
             $this->assertEquals('new_tom@aol.com', $result);
         }
 
-        function test_setPassword()
+        function test_setPhone()
         {
             //arrange
             $name = 'Tom';
             $email = 'tom@aol.com';
-            $password = '123';
+            $phone = '123';
             $id = 1;
-            $test_user = new User($name, $email, $password, $id);
+            $test_user = new User($name, $email, $phone, $id);
 
             //act
-            $test_user->setPassword('234');
-            $result = $test_user->getPassword();
+            $test_user->setPhone('234');
+            $result = $test_user->getPhone();
             //assert
             $this->assertEquals('234', $result);
         }
 
-        function test_getPassword()
+        function test_getPhone()
         {
             //Arrange
             $name = 'Tom';
             $email = 'tom@aol.com';
-            $password = '123';
+            $phone = '123';
             $id = 1;
-            $test_user = new User($name, $email, $password, $id);
+            $test_user = new User($name, $email, $phone, $id);
 
             //Act
-            $result = $test_user->getPassword();
+            $result = $test_user->getPhone();
 
             //Assert
             $this->assertEquals('123', $result);
@@ -218,9 +218,9 @@
             //Arrange
             $name = 'Bob';
             $email = 'bobo@aol.com';
-            $password = '123';
+            $phone = '123';
             $id = 2;
-            $test_user = new User($name, $email, $password, $id);
+            $test_user = new User($name, $email, $phone, $id);
             $test_user->save();
 
             $event_date = "2015-10-01 12:24:55";
@@ -245,9 +245,9 @@
             //Arrange
             $name = 'Tom';
             $email = 'tom@aol.com';
-            $password = '123';
+            $phone = '123';
             $id = 1;
-            $test_user = new User($name, $email, $password, $id);
+            $test_user = new User($name, $email, $phone, $id);
             //Act
             $test_user->save();
             $result = User::getAll();
@@ -260,16 +260,16 @@
             //Arrange
             $name = 'Tom';
             $email = 'tom@aol.com';
-            $password = '123';
+            $phone = '123';
             $id = 1;
-            $test_user = new User($name, $email, $password, $id);
+            $test_user = new User($name, $email, $phone, $id);
             $test_user->save();
 
             $name2 = 'Maggie';
             $email2 = 'maggie@gmail.com';
-            $password2 = 'maggie124';
+            $phone2 = 'maggie124';
             $id2 = 2;
-            $test_user2 = new User($name2, $email2, $password2, $id2);
+            $test_user2 = new User($name2, $email2, $phone2, $id2);
             $test_user2->save();
 
             //Act
@@ -283,16 +283,16 @@
             //arrange
             $name = 'Tom';
             $email = 'tom@aol.com';
-            $password = '123';
+            $phone = '123';
             $id = 1;
-            $test_user = new User($name, $email, $password, $id);
+            $test_user = new User($name, $email, $phone, $id);
             $test_user->save();
 
             $name2 = 'Maggie';
             $email2 = 'maggie@gmail.com';
-            $password2 = 'maggie124';
+            $phone2 = 'maggie124';
             $id2 = 2;
-            $test_user2 = new User($name2, $email2, $password2, $id2);
+            $test_user2 = new User($name2, $email2, $phone2, $id2);
             $test_user2->save();
             //act
             User::deleteAll();

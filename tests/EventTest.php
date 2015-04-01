@@ -340,9 +340,42 @@
 
             //Assert
             $this->assertEquals($test_event->getActivity(), [$test_activity, $test_activity2]);
-
         }
 
+        function test_GetUsers()
+    {
+            //Arrange
+            $id = 3;
+            $date = '2015-10-01 12:24:55';
+            $description = "26.5 miles of fun";
+            $event_name = "Portland Marathon";
+            $location = "Downtown Portland";
+            $user_id = 4;
+            $test_event = new Event ($id, $date, $description, $event_name, $location, $user_id);
+            $test_event->save();
+
+            $name = 'Tom';
+            $email = 'tom@aol.com';
+            $phone = '123';
+            $id = 1;
+            $test_user = new User($name, $email, $phone, $id);
+            $test_user->save();
+
+            $name2 = 'Bob';
+            $email2 = 'bob@aol.com';
+            $phone2 = '124';
+            $id2 = 2;
+            $test_user2 = new User($name2, $email2, $phone2, $id2);
+            $test_user2->save();
+
+            //Act
+            $test_event->addUser($test_user);
+            $test_event2->addUser($test_user2);
+
+            //Assert
+            $result = $test_event->getUsers();
+            $this->assertEquals([$test_user, $test_user2], $result);
+    }
 
     }//Ends class
 
