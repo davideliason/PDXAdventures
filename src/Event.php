@@ -108,14 +108,14 @@
 
          function addActivity($activity)
          {
-             $GLOBALS['DB']->exec("INSERT INTO activities_events (activity_id, event_id) VALUES ({$this->getId()}, {$activity->getId()});");
+            $GLOBALS['DB']->exec("INSERT INTO activities_events (activity_id, event_id) VALUES ({$activity->getId()}, {$this->getId()});");
          }
 
          function getActivities()
          {
              $query = $GLOBALS['DB']->query("SELECT activities.* FROM
-                 events JOIN events_activities ON (events.id = events_activities.event_id)
-                        JOIN activities ON (events_activities.event_id = activities.id)
+                 events JOIN activities_events ON (events.id = activities_events.event_id)
+                        JOIN activities ON (activities_events.event_id = activities.id)
                         WHERE events.id = {$this->getId()};");
             $activity_ids = $query->fetchAll(PDO::FETCH_ASSOC);
 
@@ -123,7 +123,7 @@
             foreach ($activity_ids as $activity) {
                 $activity_name = $activity['activity_name'];
                 $id = $activity['id'];
-                $new_activity = new Activity($activity_name, $id);
+                $new_activity = new Activity($id, $activity_name);
                 array_push($activities, $new_activity);
             }
             return $activities;
