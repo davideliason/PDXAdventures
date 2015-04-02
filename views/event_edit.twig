@@ -5,8 +5,8 @@
 <body>
     <h1> {{ event.getEventName }} </h1>
     <h2>Please re-enter your information</h2>
-    <form  method='post'>
         <form class='form-horizontal' role='form' action='/event/{{ event.getId }}' method='post' role='form'>
+            <input name="_method" type="hidden" value="patch">
             <div class='form-group'>
                 <label for='event_name'>Event Name</label>
                 <input id='event_name' name='event_name' type='text' required>
