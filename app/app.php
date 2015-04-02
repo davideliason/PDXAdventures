@@ -19,11 +19,71 @@
 
     //creates route to homepage
     $app->get('/', function() use ($app) {
+
     return $app['twig']->render('index.twig', array('events' => Event::getAll(), 'activities' => Activity::getAll()));
     });
 
-    $app->post('/', function() use ($app) {
-        return $app['twig']->render('index.twig', array('events' => Event::getAll(), 'activities' => Activity::getAll()));
+    $app->get('/filter', function() use ($app) {
+        $checked = [];
+        $activities = $_POST['activity'];
+        foreach($activities as $activity_id){
+            $new_activity = Activity::find($activity_id);
+            array_push($checked, $new_activity);
+        }
+
+        $all_events = [];
+        foreach($checked as $activity) {
+            //grab the events for each activity
+            $events = $activity->getEvents();
+                foreach($events as $event) {
+                    array_push($all_events, $event);
+                }
+            //push them into a new array of events checked
+        }
+        return $app['twig']->render('filter.twig', array('events' => $all_events, 'activities' => Activity::getAll()));
+    });
+
+
+    $app->post('/filter', function() use ($app) {
+        $checked = [];
+        $activities = $_POST['activity'];
+        foreach($activities as $activity_id){
+            $new_activity = Activity::find($activity_id);
+            array_push($checked, $new_activity);
+        }
+            // $n = count($activities);
+            // for($i = 0; $i < $n; $i++)
+            // if($activities[$i] == 1){
+            //     $new_activity = new Activity('epi-coding', 1);
+            //     array_push($checked, $new_activity);
+            //     $i++;
+            // } elseif($activities[$i]== 2) {
+            //     $new_activity = new Activity('frolocking', 2);
+            //     array_push($checked, $new_activity);
+            //     $i++;
+            // } elseif ($activities[$i] == 3) {
+            //     $new_activity = new Activity('swimming', 3);
+            //     array_push($checked, $new_activity);
+            //     $i++;
+            // } else {
+            //     $new_activity = new Activity('outdoors', 4);
+            //     array_push($checked, $new_activity);
+            //     $i++;
+            // }
+
+
+        //use the checked array to loop through activity objects
+        $all_events = [];
+        foreach($checked as $activity) {
+            //grab the events for each activity
+            $events = $activity->getEvents();
+                foreach($events as $event) {
+                    array_push($all_events, $event);
+                }
+            //push them into a new array of events checked
+        }
+
+        return $app['twig']->render('filter.twig', array('events' => $all_events, 'activities' => Activity::getAll()));
     });
 
     $app->get('/add_event', function() use ($app) {
@@ -45,21 +105,34 @@
         $id = null;
         $new_event = new Event($id, $date_event, $description, $event_name, $location, $user_id);
         $new_event->save();
-        return $app['twig']->render('add_success.twig', array('event'=> $new_event, 'user' => $new_user));
+
+        $checked = [];
+        $activities = $_POST['activity'];
+        foreach($activities as $activity_id){
+            $new_activity = Activity::find($activity_id);
+            array_push($checked, $new_activity);
+        }
+
+        foreach($checked as $activity) {
+            $new_event->addActivity($activity);
+        }
+        return $app['twig']->render('add_success.twig', array('event'=> $new_event, 'user' => $new_user, 'activities_associated' => $checked));
     });
 
     $app->get('/event/{id}', function($id) use ($app) {
         $selected_event = Event::find($id);
         $user = $selected_event->getUsers();
         $selected_user = User::find($user[0]->getId());
-        return $app['twig']->render('event.twig', array('event'=> $selected_event, 'user' => $selected_user));
+        $associated_activites = $selected_event->getActivities();
+        return $app['twig']->render('event.twig', array('event'=> $selected_event, 'user' => $selected_user, 'associated_activities' => $associated_activities));
     });
 
     $app->get('/event/{id}/edit', function($id) use ($app) {
         $selected_event = Event::find($id);
         $user = $selected_event->getUsers();
         $selected_user = User::find($user[0]->getId());
-        return $app['twig']->render('event_edit.twig', array('event' => $selected_event, 'user' => $selected_user));
+        $associated_activites = $selected_event->getActivities();
+        return $app['twig']->render('event_edit.twig', array('event' => $selected_event, 'user' => $selected_user, 'associated_activities' => $associated_activities));
     });
 
     $app->patch('/event/{id}', function($id) use ($app) {
@@ -92,7 +165,7 @@
         return $app['twig']->render('index.twig', array('events' => Event::getAll(), 'activities' => Activity::getAll()));
     });
 
-    return $app
+    return $app;
 
 
 ?>
