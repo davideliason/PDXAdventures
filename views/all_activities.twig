@@ -37,46 +37,33 @@
           <br>
           <br>
           <h1>PDX Adventures</h1>
-          <h4>{{ activities.getActivityName }}</h4>
+          <h4>Explore</h4>
           <ul class='list-unstyled list-inline social-media'>
-              <li><a href="/activities/1"><i class="fa fa-tree fa-2x"></i></a></li>
-              <li><a href="/activities/2"><i class="fa fa-futbol-o fa-2x"></i></a></li>
-              <li><a href="/activities/3"><i class="fa fa-bicycle fa-2x"></i></a></li>
-              <li><a href="/activities/4"><i class="fa fa-life-ring fa-2x"></i></a></li>
-              <li><a href="/activities/5"><i class="fa fa-paw fa-2x"></i></a></li>
+
+            <li><a href="/activities/1"><i class="fa fa-tree fa-2x"></i></a></li>
+            <li><a href="/activities/2"><i class="fa fa-futbol-o fa-2x"></i></a></li>
+            <li><a href="/activities/3"><i class="fa fa-bicycle fa-2x"></i></a></li>
+            <li><a href="/activities/4"><i class="fa fa-life-ring fa-2x"></i></a></li>
+            <li><a href="/activities/5"><i class="fa fa-paw fa-2x"></i></a></li>
+
           </ul>
             <p class='double-arrow'><i class="fa fa-angle-double-down fa-2x"></i></p>
           </div>
         </div>
     </header>
 
-      <section>
-      <div class='container text-center top-border'>
+    <section>
+        <div class='container text-center top-border'>
+        {% if activities is not empty %}
+            {% for activity in activities %}
+                    <p><a href="/activities/{{ activity.getId }}">{{ activity.getActivityName }}</a></p>
 
-          <h4>{{ activities.getActivityName}}</h4>
-
-            {% if events is not empty %}
-              <ul class='list-unstyled list-inline social-media'>
-                <li>
-                    {% for event in events %}
-                        {{ event.getEventName }}
-                        {{ event.getDateEvent }}
-                        <p><a href='/event/{{ event.getId }}'>Click for more info</a></p>
-                    {% endfor %}</li>
-              </ul>
-
-            <p><a href='/add_event'>Add an event</a></p>
-
+            {% endfor %}
         {% else %}
-            <h2> Sorry, there are no events to display</h2>
-            <p><a href='/add_event'>Add an event</a></p>
+            <p>There are no activity categories at this time</p>
         {% endif %}
-     </div>
-
+    </div>
     </section>
 
-
-
-
-</body>
-</html>
+    </body>
+    </html>
