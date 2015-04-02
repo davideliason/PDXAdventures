@@ -55,7 +55,7 @@
 
             function addEvent($event)
             {
-                $GLOBALS['DB']->exec("INSERT INTO activities_events (activity_id, event_id) VALUES ({$event->getId()}, {$this->getId()});");
+                $GLOBALS['DB']->exec("INSERT INTO activities_events (activity_id, event_id) VALUES ({$this->getId()}, {$event->getId()});");
 
             }
 

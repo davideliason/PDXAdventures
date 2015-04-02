@@ -192,44 +192,45 @@
             $test_event->save();
 
             //Act
-            
+            $test_activity2->addEvent($test_event);
+            $result = $test_activity2->getEvents();
 
             //Act
+            $this->assertEquals([$test_event], $result);
         }
 
 
         function test_getEvents()
         {
             //arrange
-            $id3 = 3;
-            $activity_name2 = "Windsurfing";
-            $test_activity2 = new Activity($activity_name2, $id3);
-            $test_activity2->save();
+            $id = 3;
+            $activity_name = "Windsurfing";
+            $test_activity = new Activity($activity_name, $id);
+            $test_activity->save();
 
-            $id = 1;
+            $id2 = 1;
             $date = '2015-10-01 12:24:55';
             $description = "26.5 miles of fun";
             $event_name = "Portland Marathon";
             $location = "Downtown Portland";
             $user_id = 2;
-            $test_event = new Event ($date, $description, $event_name, $location, $user_id, $id);
+            $test_event = new Event ($date, $description, $event_name, $location, $user_id, $id2);
             $test_event->save();
 
-            $id2 = 2;
+            $id3 = 2;
             $date2 = '2015-10-01 12:24:55';
             $description2 = "26.5 miles of fun";
             $event_name2 = "Portland Marathon";
             $location2 = "Downtown Portland";
             $user_id2 = 2;
-            $test_event2 = new Event ($date2, $description2, $event_name2, $location2, $user_id2, $id2);
+            $test_event2 = new Event ($date2, $description2, $event_name2, $location2, $user_id2, $id3);
             $test_event2->save();
 
 
             //act
-            $test_activity2->addEvent($test_event);
-            $test_activity2->addEvent($test_event2);
-            $result = $test_activity2->getEvents();
-
+            $test_activity->addEvent($test_event);
+            $test_activity->addEvent($test_event2);
+            $result = $test_activity->getEvents();
             //assert
             $this->assertEquals([$test_event, $test_event2], $result);
 

@@ -307,7 +307,25 @@
 
         function testAddActivity()
         {
-            
+            //Arrange
+            $date = '2015-10-01 12:24:55';
+            $description = "26.5 miles of fun";
+            $event_name = "Portland Marathon";
+            $location = "Downtown Portland";
+            $user_id = 2;
+            $test_event = new Event ($date, $description, $event_name, $location, $user_id);
+            $test_event->save();
+
+            $activity_name = "Rowing";
+            $test_activity = new Activity($activity_name);
+            $test_activity->save();
+
+            //Act
+            $test_event->addActivity($test_activity);
+            $result = $test_event->getActivities();
+
+            //Assert
+            $this->assertEquals([$test_activity], $result);
         }
 
 
