@@ -97,14 +97,15 @@
         $new_user = new User($name, $email, $phone);
         $new_user->save();
 
+
         $event_name = $_POST['event_name'];
         $date_event = $_POST['date_event'];
         $location = $_POST['location'];
         $description = $_POST['description'];
         $user_id = $new_user->getId();
-        $id = null;
         $new_event = new Event($date_event, $description, $event_name, $location, $user_id);
         $new_event->save();
+
 
         $checked = [];
         $activities = $_POST['activity'];
@@ -127,6 +128,7 @@
         $user = $selected_event->getUsers();
         $selected_user = User::find($user[0]->getId());
         $associated_activites = $selected_event->getActivities();
+        
         return $app['twig']->render('event.twig', array('event'=> $selected_event, 'user' => $selected_user, 'associated_activities' => $associated_activities));
     });
 

@@ -11,8 +11,8 @@
     </ul>
     <p> Under the activity categories:</p>
     <ul>
-    {% if activities_associated is not empty %}
-        {% for activity in activities_associated %}
+    {% if associated_activities is not empty %}
+        {% for activity in associated_activities %}
             <li>{{ activity.getActivityName }}</li>
         {% endfor %}
     {% endif %}
