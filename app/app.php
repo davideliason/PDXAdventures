@@ -5,7 +5,7 @@
     require_once __DIR__.'/../src/Event.php';
     require_once __DIR__.'/../src/User.php';
 
-    $DB = new PDO('pgsql:host=localhost;dbname=pdxadventures');
+    $DB = new PDO('pgsql:host=localhost;dbname=pdxadventure');
 
     $app = new Silex\Application();
     $app['debug'] = true;
@@ -103,7 +103,7 @@
         $description = $_POST['description'];
         $user_id = $new_user->getId();
         $id = null;
-        $new_event = new Event($id, $date_event, $description, $event_name, $location, $user_id);
+        $new_event = new Event($date_event, $description, $event_name, $location, $user_id);
         $new_event->save();
 
         $checked = [];
