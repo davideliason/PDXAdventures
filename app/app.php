@@ -69,6 +69,10 @@
         return $app['twig']->render('activities.twig', array('events'=> $matching_events, 'activities'=> $selected_activities));
     });
 
+    $app->get('/activities', function() use ($app) {
+        return $app['twig']->render('all_activities.twig', array('activities' => Activity::getAll()));
+    });
+
     $app->get('/add_event', function() use ($app) {
         return $app['twig']->render('add_event.twig');
     });
