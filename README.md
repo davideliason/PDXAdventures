@@ -10,13 +10,13 @@
 
 3.  Open a new tab in terminal and type:
     a.  psql
-    b.  CREATE DATABASE shoes;
-    c.  \c shoes;
-    d.  \i shoes.sql;
+    b.  CREATE DATABASE pdxadventure;
+    c.  \c pdxadventure;
+    d.  \i pdxadventure.sql;
 
 3.  In a web browser window, type localhost:8000
 
-4.  Now you should be able to see the Shoe Store.
+4.  Now you should be able to see the PDX Adventures web app.
 
 
 If the import doesn't work or you want to also view the test database and you need to recreate the database in psql, you can also type in the following commands:

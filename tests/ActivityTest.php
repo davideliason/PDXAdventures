@@ -173,39 +173,39 @@
         //
         // }
 
-        function test_getEvents()
-        {
-            //arrange
-            $id = 1;
-            $date = '2015-10-01 12:24:55';
-            $description = "26.5 miles of fun";
-            $event_name = "Portland Marathon";
-            $location = "Downtown Portland";
-            $user_id = 2;
-            $test_event = new Event ($id, $date, $description, $event_name, $location, $user_id);
-            $test_event->save();
-
-            $id2 = 2;
-            $date2 = '2015-10-01 12:24:55';
-            $description2 = "26.5 miles of fun";
-            $event_name2 = "Portland Marathon";
-            $location2 = "Downtown Portland";
-            $user_id2 = 2;
-            $test_event2 = new Event ($id2, $date2, $description2, $event_name2, $location2, $user_id2);
-            $test_event2->save();
-
-            $id3 = 3;
-            $activity_name2 = "Windsurfing";
-            $test_activity2 = new Activity($id3, $activity_name2);
-            $test_activity2->save();
-
-            //act
-            $test_activity2->addEvents($test_event);
-            $test_activity2->addEvents($test_event2);
-            //assert
-            $this->assertEquals($test_activity2->getEvents(), [$test_event, $test_event2]);
-
-        }
+        // function test_getEvents()
+        // {
+        //     //arrange
+        //     $id = 1;
+        //     $date = '2015-10-01 12:24:55';
+        //     $description = "26.5 miles of fun";
+        //     $event_name = "Portland Marathon";
+        //     $location = "Downtown Portland";
+        //     $user_id = 2;
+        //     $test_event = new Event ($id, $date, $description, $event_name, $location, $user_id);
+        //     $test_event->save();
+        //
+        //     $id2 = 2;
+        //     $date2 = '2015-10-01 12:24:55';
+        //     $description2 = "26.5 miles of fun";
+        //     $event_name2 = "Portland Marathon";
+        //     $location2 = "Downtown Portland";
+        //     $user_id2 = 2;
+        //     $test_event2 = new Event ($id2, $date2, $description2, $event_name2, $location2, $user_id2);
+        //     $test_event2->save();
+        //
+        //     $id3 = 3;
+        //     $activity_name2 = "Windsurfing";
+        //     $test_activity2 = new Activity($id3, $activity_name2);
+        //     $test_activity2->save();
+        //
+        //     //act
+        //     $test_activity2->addEvents($test_event);
+        //     $test_activity2->addEvents($test_event2);
+        //     //assert
+        //     $this->assertEquals($test_activity2->getEvents(), [$test_event, $test_event2]);
+        //
+        // }
 
 
 

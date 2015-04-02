@@ -265,30 +265,31 @@
         function test_update()
         {
             //Arrange
-            $id = 1;
             $date = '2015-10-01 12:24:55';
             $description = "26.5 miles of fun";
             $event_name = "Portland Marathon";
             $location = "Downtown Portland";
             $user_id = 2;
-            $test_event = new Event ($date, $description, $event_name, $location, $user_id, $id);
+            $test_event = new Event ($date, $description, $event_name, $location, $user_id);
             $test_event->save();
 
-            $id2 = 2;
+
             $date2 = '2015-11-01 12:24:55';
             $description2 = "soap box craziness";
             $event_name2 = "Mount Tabor Soap Box Derby";
             $location2 = "Mount Tabor";
             $user_id2 = 2;
-            $test_event2 = new Event ($date, $description, $event_name, $location, $user_id, $id);
-            $test_event2->save();
+            $test_event2 = new Event ($date, $description, $event_name, $location, $user_id);
+            //$test_event2->save();
 
             //Act
-            $test_event->update($test_event2);
-            $result = Event::getAll()
+            $test_event->update($date2, $description2, $event_name2, $location2, $user_id2);
+
+            // $result =  Event::getAll();
+            // var_dump($result);
 
             //Assert
-            $this->assertEquals([$test_event], $result[0]);
+            $this->assertEquals(['2015-11-01 12:24:55', 'soap box craziness', 'Mount Tabor Soap Box Derby', 'Mount Tabor'], [$test_event->getDateEvent(), $test_event->getDescription(), $test_event->getEventName(), $test_event->getLocation()]);
         }
 
         function testdeleteAll()

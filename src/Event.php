@@ -90,9 +90,14 @@
             $this->setId($result['id']);
          }
 
-         function update ($new_event_name)
+         function update ($date2, $description2, $event_name2, $location2, $user_id2)
          {
-             $GLOBALS['DB']->exec("DELETE FROM events WHERE id = {$this->getId()};");
+             $GLOBALS['DB']->exec("UPDATE events SET (date_event, description, event_name, location, user_id) = ('{$date2}', '{$description2}', '{$event_name2}', '{$location2}', {$user_id2}) WHERE id =  {$this->getId()};");
+             $this->setDate($date2);
+             $this->setDescription($description2);
+             $this->setEventName($event_name2);
+             $this->setLocation($location2);
+             $this->setUserId($user_id2);
          }
 
          static function find($search_id)
