@@ -2,9 +2,9 @@
 /* HEADER */
 .jumbotron {
   background:
-            linear-gradient(#d3d3d3, transparent 90%),
-            linear-gradient(20deg, #778899, transparent),
-              url(../img/tree_ring.jpg) no-repeat center;
+            linear-gradient(#686868, transparent 75%),
+            linear-gradient(20deg, #909090, transparent),
+              url(../img/forest.jpg) no-repeat center;
   background-size: cover;
   color: #fff;
   font-size: 2em;
