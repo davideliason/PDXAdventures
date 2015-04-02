@@ -1,0 +1,44 @@
+
+/* HEADER */
+.jumbotron {
+  background:
+            linear-gradient(#d3d3d3, transparent 90%),
+            linear-gradient(20deg, #778899, transparent),
+              url(../img/tree_ring.jpg) no-repeat center;
+  background-size: cover;
+  color: #fff;
+  font-size: 2em;
+  margin-top: 0;
+
+}
+
+.jumbotron h1 {
+  font-size: 2.5em;
+  font-weight: bold;
+}
+
+.jumbotron h4 {
+  font-size: 1em;
+}
+.navbar {
+  margin-bottom: 0;
+  font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
+}
+
+.social-media li a i {
+  margin-top: 3em;
+  color: #fff;
+}
+
+/* BODY */
+
+/*body {
+  background: #000000 !important;
+  }*/
+
+.container {
+  font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
+}
+.top-border {
+  border-top: 1px solid #ccc;
+}

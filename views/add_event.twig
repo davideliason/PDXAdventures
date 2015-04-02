@@ -21,6 +21,15 @@
         <label for='phone'>Your phone</label>
         <input id='phone' name='phone' type='text' required>
 
+        <!-- <label for='activity'>Please choose an activity category</label>
+        {% if activities is not empty %}
+        <select id='activity_name' name='activity_name' type='text'>
+            {% for activity in activities %}
+                <option value="{{ activity.getId }}"> {{ activity.getName }} </option>
+            {% endfor %}
+        </select>
+        {% endif %} -->
+
         <button type='submit'>Add an event</button>
     </form>
 </body>
