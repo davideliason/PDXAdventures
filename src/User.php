@@ -135,7 +135,8 @@
         //Grab all events associated with a particular user. Call GetEvents method on User object.
         function getEvents()
         {
-            $GLOBALS['DB']->query("SELECT * FROM events WHERE user_id = {$this->getId()};");
+            $query = $GLOBALS['DB']->query("SELECT * FROM events WHERE user_id = {$this->getId()};");
+            $events = $query->fetchAll(PDO::FETCH_ASSOC);
             $events_array = array();
 
             foreach($events as $event) {
@@ -145,36 +146,11 @@
                 $event_name = $event['event_name'];
                 $location = $event['location'];
                 $user_id = $event['user_id'];
-                $new_event = new Event($id, $date_event, $description, $location, $user_id);
+                $new_event = new Event($date_event, $description, $event_name, $location, $user_id, $id);
                 array_push($events_array, $new_event);
             }
             return $events_array;
         }
-
-
-        //UNDER CONSTRUCTION
-        // function getEvents()
-        // {
-        //
-        //     $statement = $GLOBALS['DB']->query("SELECT * FROM users WHERE id = {$this->get UserId()};");
-        //     $events_ids = $statement->fetchAll(PDO::FETCH_ASSOC);
-        //
-        //     $events = array();
-        //     foreach($events_ids as $event)
-        //     {
-        //         $event_id = $event['event_id'];
-        //         $id = $event['id'];
-        //         $date_event = $event['date_event'];
-        //         $description = $event['description'];
-        //         $event_name = $event['event_name'];
-        //         $location = $event['location'];
-        //         $user_id = $event['user_id'];
-        //         $new_event = new Event($event_id, $id, $date_event, $description, $event_name, $location, $user_id);
-        //         array_push($events,$new_event);
-        //     }
-        //   return $events;
-//        }
-
     }
 
 ?>

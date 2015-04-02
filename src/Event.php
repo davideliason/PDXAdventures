@@ -9,7 +9,7 @@
         private $location;
         private $user_id;
 
-        function __construct($id, $date_event, $description, $event_name, $location, $user_id)
+        function __construct($date_event, $description, $event_name, $location, $user_id, $id=null)
         {
             $this->id = $id;
             $this->date_event = $date_event;
@@ -108,14 +108,14 @@
 
          function addActivity($activity)
          {
-             $GLOBALS['DB']->exec("INSERT INTO activities_events (activity_id, event_id) VALUES ({$this->getId()}, {$activity->getId()});");
+            $GLOBALS['DB']->exec("INSERT INTO activities_events (activity_id, event_id) VALUES ({$activity->getId()}, {$this->getId()});");
          }
 
          function getActivities()
          {
              $query = $GLOBALS['DB']->query("SELECT activities.* FROM
-                 events JOIN events_activities ON (events.id = events_activities.event_id)
-                        JOIN activities ON (events_activities.event_id = activities.id)
+                 events JOIN activities_events ON (events.id = activities_events.event_id)
+                        JOIN activities ON (activities_events.activity_id = activities.id)
                         WHERE events.id = {$this->getId()};");
             $activity_ids = $query->fetchAll(PDO::FETCH_ASSOC);
 
@@ -157,7 +157,7 @@
                  $event_name = $event['event_name'];
                  $location = $event['location'];
                  $user_id = $event['user_id'];
-                 $new_event = new Event($id, $date_event, $description, $event_name, $location, $user_id);
+                 $new_event = new Event($date_event, $description, $event_name, $location, $user_id, $id);
                  array_push($events, $new_event);
              }
              return $events;
