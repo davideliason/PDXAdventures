@@ -235,8 +235,4 @@
             $this->assertEquals([$test_event, $test_event2], $result);
 
         }
->>>>>>> 373bfafa5e5d4bb699511e068b8fd2513ec65f3b
-
-    }//Ends class
-
 ?>
