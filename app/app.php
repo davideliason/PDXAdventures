@@ -38,7 +38,6 @@
                 foreach($events as $event) {
                     array_push($all_events, $event);
                 }
-            //push them into a new array of events checked
         }
         return $app['twig']->render('filter.twig', array('events' => $all_events, 'activities' => Activity::getAll()));
     });
@@ -51,36 +50,13 @@
             $new_activity = Activity::find($activity_id);
             array_push($checked, $new_activity);
         }
-            // $n = count($activities);
-            // for($i = 0; $i < $n; $i++)
-            // if($activities[$i] == 1){
-            //     $new_activity = new Activity('epi-coding', 1);
-            //     array_push($checked, $new_activity);
-            //     $i++;
-            // } elseif($activities[$i]== 2) {
-            //     $new_activity = new Activity('frolocking', 2);
-            //     array_push($checked, $new_activity);
-            //     $i++;
-            // } elseif ($activities[$i] == 3) {
-            //     $new_activity = new Activity('swimming', 3);
-            //     array_push($checked, $new_activity);
-            //     $i++;
-            // } else {
-            //     $new_activity = new Activity('outdoors', 4);
-            //     array_push($checked, $new_activity);
-            //     $i++;
-            // }
 
-
-        //use the checked array to loop through activity objects
         $all_events = [];
         foreach($checked as $activity) {
-            //grab the events for each activity
             $events = $activity->getEvents();
                 foreach($events as $event) {
                     array_push($all_events, $event);
                 }
-            //push them into a new array of events checked
         }
 
         return $app['twig']->render('filter.twig', array('events' => $all_events, 'activities' => Activity::getAll()));
@@ -127,8 +103,8 @@
         $selected_event = Event::find($id);
         $user = $selected_event->getUsers();
         $selected_user = User::find($user[0]->getId());
-        $associated_activites = $selected_event->getActivities();
-        
+        $associated_activities = $selected_event->getActivities();
+
         return $app['twig']->render('event.twig', array('event'=> $selected_event, 'user' => $selected_user, 'associated_activities' => $associated_activities));
     });
 
@@ -136,7 +112,8 @@
         $selected_event = Event::find($id);
         $user = $selected_event->getUsers();
         $selected_user = User::find($user[0]->getId());
-        $associated_activites = $selected_event->getActivities();
+        //add associated activities to twig
+        $associated_activities = $selected_event->getActivities();
         return $app['twig']->render('event_edit.twig', array('event' => $selected_event, 'user' => $selected_user, 'associated_activities' => $associated_activities));
     });
 
@@ -147,7 +124,7 @@
         $selected_event = Event::find($id);
 
         $user = $selected_event->getUsers();
-        $selected_user = User::find($user->getId());
+        $selected_user = User::find($user[0]->getId());
         $new_user_name = $_POST['name'];
         $new_user_email = $_POST['email'];
         $new_user_phone = $_POST['phone'];
@@ -158,13 +135,15 @@
         $new_location = $_POST['location'];
         $new_description = $_POST['description'];
         $new_user_id = $selected_user->getId();
-        $selected_event->update($new_date_event, $new_description, $new_event_name, $new_location, $user_id);
-        return $app['twig']->render('event.twig', array('event'=> $selected_event, 'user' => $selected_user));
+        $selected_event->update($new_date_event, $new_description, $new_event_name, $new_location, $new_user_id);
+        $associated_activities = $selected_event->getActivities();
+
+        return $app['twig']->render('event.twig', array('event'=> $selected_event, 'user' => $selected_user, 'associated_activities' => $associated_activities));
     });
 
     $app->delete('/delete_event/{id}', function($id) use ($app) {
         $selected_event = Event::find($id);
-        $selected_event->deleteEvent();
+        $selected_event->delete();
         return $app['twig']->render('index.twig', array('events' => Event::getAll(), 'activities' => Activity::getAll()));
     });
 
