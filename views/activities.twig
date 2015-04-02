@@ -39,13 +39,11 @@
           <h1>PDX Adventures</h1>
           <h4>Explore</h4>
           <ul class='list-unstyled list-inline social-media'>
-
-            <li><a href="/activities/1"><i class="fa fa-tree fa-2x"></i></a></li>
-            <li><a href="/activities/2"><i class="fa fa-futbol-o fa-2x"></i></a></li>
-            <li><a href="/activities/3"><i class="fa fa-bicycle fa-2x"></i></a></li>
-            <li><a href="/activities/4"><i class="fa fa-life-ring fa-2x"></i></a></li>
-            <li><a href="/activities/5"><i class="fa fa-paw fa-2x"></i></a></li>
-
+              <li><a href="/activities/1"><i class="fa fa-tree fa-2x"></i></a></li>
+              <li><a href="/activities/2"><i class="fa fa-futbol-o fa-2x"></i></a></li>
+              <li><a href="/activities/3"><i class="fa fa-bicycle fa-2x"></i></a></li>
+              <li><a href="/activities/4"><i class="fa fa-life-ring fa-2x"></i></a></li>
+              <li><a href="/activities/5"><i class="fa fa-paw fa-2x"></i></a></li>
           </ul>
             <p class='double-arrow'><i class="fa fa-angle-double-down fa-2x"></i></p>
           </div>
@@ -54,32 +52,27 @@
 
       <section>
       <div class='container text-center top-border'>
-        {% if events is not empty %}
-            {% for event in events %}
-                {{ event.getEventName }}
-                {{ event.getDateEvent }}
-                <p><a href='/event/{{ event.getId }}'>Click for more info</a></p>
-            {% endfor %}
+
+          <h4>{{ activities.getActivityName}}</h4>
+
+            {% if events is not empty %}
+              <ul class='list-unstyled list-inline social-media'>
+                <li>
+                    {% for event in events %}
+                        {{ event.getEventName }}
+                        {{ event.getDateEvent }}
+                        <p><a href='/event/{{ event.getId }}'>Click for more info</a></p>
+                    {% endfor %}</li>//each activity
+              </ul>
+
             <p><a href='/add_event'>Add an event</a></p>
 
-            <form action='/delete_events' method='post'>
-                <button type='submit'>Delete All</button>
-            </form>
         {% else %}
             <h2> Sorry, there are no events to display</h2>
             <p><a href='/add_event'>Add an event</a></p>
         {% endif %}
-        </div>
-        <div class='container text-right'>
-        <p>Activities</p>
-        <form action='/filter' method="post">
-            <input type="checkbox" name="activity[]" value="1" checked/> Epi-coding<br/>
-            <input type="checkbox" name="activity[]" value="2" checked/> Frolocking<br/>
-            <input type="checkbox" name="activity[]" value="3" checked/> Swimming<br/>
-            <input type="checkbox" name="activity[]" value="4" checked/> Outdoors<br/>
-            <input type="submit" value="Filter events" />
-        </form>
-    </div>
+     </div>
+
     </section>
 
 

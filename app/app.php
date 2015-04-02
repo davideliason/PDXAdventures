@@ -62,6 +62,13 @@
         return $app['twig']->render('filter.twig', array('events' => $all_events, 'activities' => Activity::getAll()));
     });
 
+    //ICON LINKS
+    $app->get('/activities/{id}', function($id) use ($app) {
+        $selected_activities = Activity::find($id);
+        $matching_events= $selected_activities->getEvents();
+        return $app['twig']->render('activities.twig', array('events'=> $matching_events, 'activities'=> $selected_activities));
+    });
+
     $app->get('/add_event', function() use ($app) {
         return $app['twig']->render('add_event.twig');
     });
@@ -105,6 +112,7 @@
         $selected_user = User::find($user[0]->getId());
         $associated_activities = $selected_event->getActivities();
 
+
         return $app['twig']->render('event.twig', array('event'=> $selected_event, 'user' => $selected_user, 'associated_activities' => $associated_activities));
     });
 
@@ -119,6 +127,7 @@
 
 
     //NEED A POST ROUTE FOR THE EDIT
+
 
     $app->patch('/event/{id}', function($id) use ($app) {
         $selected_event = Event::find($id);

@@ -37,11 +37,13 @@ psql import:
 
 psql commands:
 CREATE DATABASE pdxadventure;
-CREATE TABLE event (id serial PRIMARY KEY, date_event timestamp, description varchar, event_name varchar, location varchar, user_id int);
-CREATE TABLE user (id serial PRIMARY KEY, name varchar, email varchar, password varchar);
+CREATE TABLE events (id serial PRIMARY KEY, date_event timestamp, description varchar, event_name varchar, location varchar, user_id int);
+CREATE TABLE users (id serial PRIMARY KEY, name varchar, email varchar, password varchar);
 CREATE TABLE activities (id serial PRIMARY KEY, activity_name varchar);
 CREATE TABLE activities_events (id serial PRIMARY KEY, activity_id int, event_id int);
-
-
+INSERT INTO activities (activity_name) VALUES ('epi-coding');
+INSERT INTO activities (activity_name) VALUES ('frolocking');
+INSERT INTO activities (activity_name) VALUES ('swimming');
+INSERT INTO activities (activity_name) VALUES ('outdoors');
 
 CREATE DATABASE pdxadventure_test WITH template pdxadventure;
