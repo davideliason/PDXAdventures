@@ -262,6 +262,7 @@
             $this->assertEquals([$test_event, $test_event2], $result);
         }
 
+
         function test_update()
         {
             //Arrange
@@ -290,6 +291,19 @@
 
             //Assert
             $this->assertEquals(['2015-11-01 12:24:55', 'soap box craziness', 'Mount Tabor Soap Box Derby', 'Mount Tabor'], [$test_event->getDateEvent(), $test_event->getDescription(), $test_event->getEventName(), $test_event->getLocation()]);
+
+        function test_delete()
+        {
+            //Arrange
+            $test_event = new Event('2015-10-01 12:24:55', "26.5 miles of fun", "Portland Marathon", "Downtown Portland", 2, 1);
+            $test_event->save();
+            $test_event->delete();
+
+            //Act
+            $result = Event::getAll();
+
+            //Assert
+            $this->assertEquals([], $result);
         }
 
         function testdeleteAll()
@@ -319,6 +333,29 @@
             //Assert
             $result = Event::getAll();
             $this->assertEquals([], $result);
+        }
+
+        function testAddActivity()
+        {
+            //Arrange
+            $date = '2015-10-01 12:24:55';
+            $description = "26.5 miles of fun";
+            $event_name = "Portland Marathon";
+            $location = "Downtown Portland";
+            $user_id = 2;
+            $test_event = new Event ($date, $description, $event_name, $location, $user_id);
+            $test_event->save();
+
+            $activity_name = "Rowing";
+            $test_activity = new Activity($activity_name);
+            $test_activity->save();
+
+            //Act
+            $test_event->addActivity($test_activity);
+            $result = $test_event->getActivities();
+
+            //Assert
+            $this->assertEquals([$test_activity], $result);
         }
 
 

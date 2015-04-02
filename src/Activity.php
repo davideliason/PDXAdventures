@@ -4,7 +4,7 @@
             private $id;
             private $activity_name;
 
-            function __construct($activity_new, $id_new = null)
+            function __construct($activity_new, $id_new=null)
             {
                 $this->id = $id_new;
                 $this->activity_name = $activity_new;
@@ -38,39 +38,6 @@
                 $this->setId($result['id']);
             }
 
-            function update($new_name)
-            {
-                $GLOBALS['DB']->exec("UPDATE activities SET (activity_name) = ('{$new_name}') WHERE id = {$this->getId()};");
-                $this->setActivityName($new_name);
-            }
-
-            function delete()
-            {
-                $GLOBALS['DB']->exec("DELETE FROM activities WHERE id = {$this->getId()};");
-            }
-
-            /*
-            function getEvents()
-            {
-                $GLOBALS['DB']->query("SELECT * FROM events WHERE user_id = {$this->getId()};");
-                $events_array = array();
-
-                foreach($events as $event) {
-                    $id = $event['id'];
-                    $date_event = $event['date_event'];
-                    $description = $event['description'];
-                    $event_name = $event['event_name'];
-                    $location = $event['location'];
-                    $user_id = $event['user_id'];
-                    $new_event = new Event($id, $date_event, $description, $location, $user_id);
-                    array_push($events_array, $new_event);
-                }
-                return $events_array;
-            }
-            */
-
-            // static functions
-
             static function find($search)
             {
                 $found = null;
@@ -84,6 +51,34 @@
                     }
                 }
               return $found;
+            }
+
+            function addEvent($event)
+            {
+                $GLOBALS['DB']->exec("INSERT INTO activities_events (activity_id, event_id) VALUES ({$this->getId()}, {$event->getId()});");
+
+            }
+
+
+            function getEvents()
+            {
+                $query = $GLOBALS['DB']->query("SELECT events.* FROM
+                activities JOIN activities_events ON (activities.id = activities_events.activity_id) JOIN events ON (activities_events.event_id = events.id)
+                WHERE activities.id = {$this->getId()};");
+            $event_ids = $query->fetchAll(PDO::FETCH_ASSOC);
+
+            $events = array();
+            foreach($event_ids as $event) {
+                    $date_event = $event['date_event'];
+                    $description = $event['description'];
+                    $event_name = $event['event_name'];
+                    $location = $event['location'];
+                    $user_id = $event['user_id'];
+                    $id = $event['id'];
+                    $new_event = new Event($date_event, $description, $event_name, $location, $user_id, $id);
+                    array_push($events, $new_event);
+                }
+                return $events;
             }
 
             static function getAll()
@@ -104,5 +99,17 @@
             {
                 $GLOBALS['DB']->exec("DELETE FROM activities *;");
             }
+
+            function update($new_name)
+            {
+                $GLOBALS['DB']->exec("UPDATE activities SET (activity_name) = ('{$new_name}') WHERE id = {$this->getId()};");
+                $this->setActivityName($new_name);
+            }
+
+            function delete()
+            {
+                $GLOBALS['DB']->exec("DELETE FROM activities WHERE id = {$this->getId()};");
+            }
+
         }
 ?>

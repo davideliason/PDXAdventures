@@ -173,12 +173,15 @@
              return $events;
          }
 
+         function delete()
+         {
+             $GLOBALS['DB']->exec("DELETE FROM events WHERE id = {$this->getId()};");
+         }
+
          static function deleteAll()
          {
              $GLOBALS['DB']->exec("DELETE FROM events *;");
          }
-
-
 
 
 

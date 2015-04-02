@@ -5,14 +5,26 @@
 <body>
     <h1>You created an event</h1>
     <p>Here are the details<p>
-        {{ event.getEventName }}
-        {{ event.getDateEvent }}
-        {{ event.getLocation }}
-        {{ event.getDescription }}
+        <ul>
+        <li>{{ event.getEventName }}</li>
+        <li>{{ event.getDateEvent }}</li>
+        <li>{{ event.getLocation }}</li>
+        <li>{{ event.getDescription }}</li>
+        </ul>
+    <p> Under the activity categories:</p>
+    <ul>
+    {% if activities_associated is not empty %}
+        {% for activity in activities_associated %}
+            <li>{{ activity.getActivityName }}</li>
+        {% endfor %}
+    {% endif %}
+        </ul>
     <p> The contact information for this event is:</p>
-        {{ user.getName }}
-        {{ user.getEmail }}
-        {{ user.getPhone }}
+    <ul>
+        <li>{{ user.getName }}</li>
+        <li>{{ user.getEmail }}</li>
+        <li>{{ user.getPhone }}</li>
+    </ul>
 
     <a href='/'>Return to home</a>
     <a href='/event/{{ event.getId }}/edit'>Edit this event</a>
