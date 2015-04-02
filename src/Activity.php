@@ -4,7 +4,7 @@
             private $id;
             private $activity_name;
 
-            function __construct($activity_new, $id_new=null)
+            function __construct($activity_new, $id_new = null)
             {
                 $this->id = $id_new;
                 $this->activity_name = $activity_new;
