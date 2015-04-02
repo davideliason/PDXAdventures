@@ -90,6 +90,11 @@
             $this->setId($result['id']);
          }
 
+         function update ($new_event_name)
+         {
+             $GLOBALS['DB']->exec("DELETE FROM events WHERE id = {$this->getId()};");
+         }
+
          static function find($search_id)
          {
              $found_event = null;
