@@ -119,6 +119,9 @@
         return $app['twig']->render('add_success.twig', array('event'=> $new_event, 'user' => $new_user, 'activities_associated' => $checked));
     });
 
+    //SEE ALL ACTIVITIES
+
+
     $app->get('/event/{id}', function($id) use ($app) {
         $selected_event = Event::find($id);
         $user = $selected_event->getUsers();
@@ -134,6 +137,9 @@
         $associated_activites = $selected_event->getActivities();
         return $app['twig']->render('event_edit.twig', array('event' => $selected_event, 'user' => $selected_user, 'associated_activities' => $associated_activities));
     });
+
+
+    //NEED A POST ROUTE FOR THE EDIT
 
     $app->patch('/event/{id}', function($id) use ($app) {
         $selected_event = Event::find($id);
