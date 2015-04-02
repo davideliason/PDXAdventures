@@ -262,6 +262,20 @@
             $this->assertEquals([$test_event, $test_event2], $result);
         }
 
+        function test_delete()
+        {
+            //Arrange
+            $test_event = new Event('2015-10-01 12:24:55', "26.5 miles of fun", "Portland Marathon", "Downtown Portland", 2, 1);
+            $test_event->save();
+            $test_event->delete();
+
+            //Act
+            $result = Event::getAll();
+
+            //Assert
+            $this->assertEquals([], $result);
+        }
+
         function testdeleteAll()
         {
             //Arrange
@@ -289,6 +303,11 @@
             //Assert
             $result = Event::getAll();
             $this->assertEquals([], $result);
+        }
+
+        function testAddActivity()
+        {
+            
         }
 
 
