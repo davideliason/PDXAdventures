@@ -50,7 +50,7 @@
             }
 
             // static functions
-            
+
             static function find($search)
             {
                 $found = null;

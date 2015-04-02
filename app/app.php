@@ -22,6 +22,10 @@
     return $app['twig']->render('index.twig', array('events' => Event::getAll(), 'activities' => Activity::getAll()));
     });
 
+    $app->post('/', function() use ($app) {
+        return $app['twig']->render('index.twig', array('events' => Event::getAll(), 'activities' => Activity::getAll()));
+    });
+
     $app->get('/add_event', function() use ($app) {
         return $app['twig']->render('add_event.twig');
     });
@@ -47,13 +51,15 @@
     $app->get('/event/{id}', function($id) use ($app) {
         $selected_event = Event::find($id);
         $user = $selected_event->getUsers();
-        return $app['twig']->render('event.twig', array('event'=> $selected_event, 'user' => $user));
+        $selected_user = User::find($user[0]->getId());
+        return $app['twig']->render('event.twig', array('event'=> $selected_event, 'user' => $selected_user));
     });
 
     $app->get('/event/{id}/edit', function($id) use ($app) {
-        $event = Event::find($id);
+        $selected_event = Event::find($id);
         $user = $selected_event->getUsers();
-        return $app['twig']->render('event_edit.twig', array('event' => $event, 'user' => $user));
+        $selected_user = User::find($user[0]->getId());
+        return $app['twig']->render('event_edit.twig', array('event' => $selected_event, 'user' => $selected_user));
     });
 
     $app->patch('/event/{id}', function($id) use ($app) {
@@ -73,6 +79,17 @@
         $new_user_id = $selected_user->getId();
         $selected_event->update($new_date_event, $new_description, $new_event_name, $new_location, $user_id);
         return $app['twig']->render('event.twig', array('event'=> $selected_event, 'user' => $selected_user));
+    });
+
+    $app->delete('/delete_event/{id}', function($id) use ($app) {
+        $selected_event = Event::find($id);
+        $selected_event->deleteEvent();
+        return $app['twig']->render('index.twig', array('events' => Event::getAll(), 'activities' => Activity::getAll()));
+    });
+
+    $app->post('/delete_events', function() use ($app) {
+        Event::deleteAll();
+        return $app['twig']->render('index.twig', array('events' => Event::getAll(), 'activities' => Activity::getAll()));
     });
 
     return $app

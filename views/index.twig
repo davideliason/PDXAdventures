@@ -1,21 +1,89 @@
 <html>
 <head>
-    <title>PDX Adventures</title>
+    <meta charset='utf-8'>
+  <title>PDX Adventures</title>
+  <link rel ='stylesheet' href ='http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css'>
+  <link rel ='stylesheet' href ='http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css'>
+  <link rel ='stylesheet' href ='../css/style.css'>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+  <script src='http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js'></script>
+</head>
 </head>
 <body>
-    <h1> Welcome to PDX Adventures</h1>
+    <nav class='navbar navbar-default navbar-fixed-top'>
+      <div class='container-fluid'>
+        <div class='navbar-header'>
+          <button type='button' class='navbar-toggle' data-toggle='collapse' data-target='#myNavbar'>
+            <span class='icon-bar'></span>
+            <span class='icon-bar'></span>
+            <span class='icon-bar'></span>
+          </button>
+          <a class='navbar-brand' href='/'>PDX Adventures</a>
+        </div>
+        <div class="collapse navbar-collapse" id='myNavbar'>
+            <ul class='nav navbar-nav navbar-right'>
+            <li><a href='/add_event'>Add Event</a></li>
+            <li><a href='/activities'>See all Activities</a></li>
+            <li><a href='http://www.twitter.com/k_giardch'><i class="fa fa-twitter-square"></i></a></li>
+            <li><a href='https://github.com/BabaYaga64/PDXAdventures.git'><i class="fa fa-github"></i></a></li>
+            <!-- <li><form action='/' method='post'> -->
+            </form>
+          </ul>
+        </div>
+      </div>
+    </nav>
+      <header>
+        <div class='jumbotron text-center'>
+          <div class='container'>
+          <h1>PDX Adventures</h1>
+          <h4>Explore</h4>
+          <ul class='list-unstyled list-inline social-media'>
+            <li><a href='http://www.twitter.com/k_giardch'><i class="fa fa-twitter-square fa-2x"></i></a></li>
+            <li><a href='https://github.com/BabaYaga64/PDXAdventures.git'><i class="fa fa-github fa-2x"></i></a></li>
+          </ul>
+            <p class='double-arrow'><i class="fa fa-angle-double-down fa-2x"></i></p>
+          </div>
+        </div>
+      </header>
+      <section>
+      <div class='container text-center top-border'>
+        {% if events is not empty %}
+            {% for event in events %}
+                {{ event.getEventName }}
+                {{ event.getDateEvent }}
+                <p><a href='/event/{{ event.getId }}'>Click for more info</a></p>
+            {% endfor %}
+            <p><a href='/add_event'>Add an event</a></p>
 
-    {% if events is not empty %}
-        {% for event in events %}
-            {{ event.getEventName }}
-            {{ event.getDateEvent }}
-            <p><a href='/event/{{ event.getId }}'>Click for more info</a></p>
+            <form action='/delete_events' method='post'>
+                <button type='submit'>Delete All</button>
+            </form>
+        {% else %}
+            <h2> Sorry, there are no events to display</h2>
+            <p><a href='/add_event'>Add an event</a></p>
+        {% endif %}
+        </div>
+        <div class='container text-right'>
+        <p>Activities</p>
+        <form action='/' method="post">
+            <input type="checkbox" name="options[]" value="epi-coding"/> Epi-coding<br/>
+            <input type="checkbox" name="options[]" value="frolocking"/> Frolocking<br/>
+            <input type="checkbox" name="options[]" value="swimming "/> Swimming<br/>
+            <input type="checkbox" name="options[]" value="outdoors "/> Outdoors<br/>
+            <input type="submit" value="Filter events" />
+        </form>
+    </div>
+    </section>
+
+
+    <!-- {% if activities is not empty %}
+        <ul>
+        <p>Activities</p>
+        {% for activity in activities %}
+            <li><a href='/activity/{{ activity.getId }}'>{{ activity.getActivityName }}</a></li>
         {% endfor %}
-        <p><a href='/add_event'>Add an event</a></p>
-    {% else %}
-        <h2> Sorry, there are no events to display</h2>
-        <p><a href='/add_event'>Add an event</a></p>
-    {% endif %}
+    </ul>
+    {% endif %} -->
 
 </body>
 </html>

@@ -23,7 +23,20 @@
             <label for='phone'>Your phone</label>
             <input id='phone' name='phone' type='text' required>
 
-        <button type='submit'>Add an event</button>
+            <!-- <label for='activity'>Please choose an activity category</label>
+            {% if activities is not empty %}
+            <select id='activity_name' name='activity_name' type='text'>
+                {% for activity in activities %}
+                    <option value="{{ activity.getId }}"> {{ activity.getName }} </option>
+                {% endfor %}
+            </select>
+            {% endif %} -->
+        <button type='submit'>Edit</button>
+    </form>
+
+    <form action='/delete_event/{{ event.getId }}' method='post'>
+          <input name="_method" type="hidden" value="delete">
+          <button type='submit'>Delete this event</button>
     </form>
 </body>
 </html>
