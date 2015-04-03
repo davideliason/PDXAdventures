@@ -35,6 +35,9 @@
 <br>
 <br>
     <h1 class='text-center'>You created an event</h1>
+    <div class='row'>
+        <div class='col-md-4'></div>
+        <div class='col-md-4'>
         <dl class='dl-horizontal text-justify'>
         <dt>Name</dt>
         <dd>{{ event.getEventName }}</dd>
@@ -60,6 +63,9 @@
 </dl>
     <button type='submit'><a class='text-center' href='/'>Finish</a></button>
     <button type='submit'><a class='text-center' href='/event/{{ event.getId }}/edit'>Edit this event</a></button>
-</body>
 </div>
+<div class='col-md-4'></div>
+</div>
+</div>
+</body>
 </html>

@@ -1,6 +1,5 @@
 <html>
 <head>
-    <meta charset='utf-8'>
   <title>PDX Adventures</title>
   <link rel ='stylesheet' href ='http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css'>
   <link rel ='stylesheet' href ='http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css'>
@@ -54,11 +53,19 @@
 
       <section>
       <div class='container text-center top-border'>
+        <div class='row'>
+            <div class='col-md-4'></div>
+            <div class='col-md-4'>
         {% if events is not empty %}
             {% for event in events %}
-                {{ event.getEventName }}
-                {{ event.getDateEvent }}
-                <p><a href='/event/{{ event.getId }}'>Click for more info</a></p>
+            <dl class='dl-horizontal text-justify'>
+            <dt>Name</dt>
+            <dd>{{ event.getEventName }}</dd>
+            <dt>Date</dt>
+            <dd>{{ event.getDateEvent }}</dd>
+            <dt>Information</dt>
+            <dd><a href='/event/{{ event.getId }}'>Click for more info</a></dd>
+        </dl>
             {% endfor %}
             <p><a href='/add_event'>Add an event</a></p>
 
@@ -70,7 +77,7 @@
             <p><a href='/add_event'>Add an event</a></p>
         {% endif %}
         </div>
-        <div class='container text-right'>
+    <div class='col-md-4'>
         <p>Activities</p>
         <form action='/filter' method="post">
             <input type="checkbox" name="activity[]" value="1" checked/> Outdoors<br/>
@@ -80,10 +87,11 @@
             <input type="checkbox" name="activity[]" value="5" checked/> Dog-friendly<br/>
             <input type="submit" value="Filter events" />
         </form>
-    </div>
-    </section>
+</div>
 
-
+</div>
+</div>
+</section>
 
 
 </body>

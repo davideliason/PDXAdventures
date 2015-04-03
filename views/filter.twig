@@ -34,6 +34,9 @@
       <header>
         <div class='jumbotron text-center'>
           <div class='container'>
+              <div class='row'>
+                  <div class='col-md-4'></div>
+                  <div class='col-md-4'>
           <br>
           <br>
           <br>
@@ -52,38 +55,46 @@
     </header>
 
       <section>
-      <div class='container text-center top-border'>
-        {% if events is not empty %}
-            {% for event in events %}
-                {{ event.getEventName }}
-                {{ event.getDateEvent }}
-                <p><a href='/event/{{ event.getId }}'>Click for more info</a></p>
-            {% endfor %}
-            <p><a href='/add_event'>Add an event</a></p>
+          <div class='container text-center top-border'>
+            <div class='row'>
+                <div class='col-md-4'></div>
+                <div class='col-md-4'>
+            {% if events is not empty %}
+                {% for event in events %}
+                <dl class='dl-horizontal text-justify'>
+                <dt>Name</dt>
+                <dd>{{ event.getEventName }}</dd>
+                <dt>Date</dt>
+                <dd>{{ event.getDateEvent }}</dd>
+                <dt>Information</dt>
+                <dd><a href='/event/{{ event.getId }}'>Click for more info</a></dd>
+            </dl>
+                {% endfor %}
+                <p><a href='/add_event'>Add an event</a></p>
 
-            <form action='/delete_events' method='post'>
-                <button type='submit'>Delete All</button>
+                <form action='/delete_events' method='post'>
+                    <button type='submit'>Delete All</button>
+                </form>
+            {% else %}
+                <h2> Sorry, there are no events to display</h2>
+                <p><a href='/add_event'>Add an event</a></p>
+            {% endif %}
+            </div>
+          <div class='col-md-4'>
+            <p>Activities</p>
+            <form action='/filter' method="post">
+                <input type="checkbox" name="activity[]" value="1" checked/> Outdoors<br/>
+                <input type="checkbox" name="activity[]" value="2" checked/> Soccer<br/>
+                <input type="checkbox" name="activity[]" value="3" checked/> Biking<br/>
+                <input type="checkbox" name="activity[]" value="4" checked/> Swimming<br/>
+                <input type="checkbox" name="activity[]" value="5" checked/> Dog-friendly<br/>
+                <input type="submit" value="Filter events" />
             </form>
-        {% else %}
-            <h2> Sorry, there are no events to display</h2>
-            <p><a href='/add_event'>Add an event</a></p>
-        {% endif %}
-        </div>
-        <div class='container text-right'>
-        <p>Activities</p>
-        <form action='/filter' method="post">
-            <input type="checkbox" name="activity[]" value="1" /> Outdoors<br/>
-            <input type="checkbox" name="activity[]" value="2" /> Soccer<br/>
-            <input type="checkbox" name="activity[]" value="3" /> Biking<br/>
-            <input type="checkbox" name="activity[]" value="4" /> Swimming<br/>
-            <input type="checkbox" name="activity[]" value="5" /> Dog-friendly<br/>
-            <input type="submit" value="Filter events" />
-        </form>
-    </div>
-    </section>
+          </div>
 
-
-
+          </div>
+          </div>
+          </section>
 
 </body>
 </html>
