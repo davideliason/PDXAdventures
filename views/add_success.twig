@@ -1,32 +1,65 @@
 <html>
-<head>
-    <title>Event Success</title>
+<meta charset='utf-8'>
+<title>PDX Adventures</title>
+<link rel ='stylesheet' href ='http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css'>
+<link rel ='stylesheet' href ='http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css'>
+<link rel ='stylesheet' href ='../css/style.css'>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<script src='http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js'></script>
 </head>
 <body>
-    <h1>You created an event</h1>
-    <p>Here are the details<p>
-        <ul>
-        <li>{{ event.getEventName }}</li>
-        <li>{{ event.getDateEvent }}</li>
-        <li>{{ event.getLocation }}</li>
-        <li>{{ event.getDescription }}</li>
-        </ul>
-    <p> Under the activity categories:</p>
-    <ul>
+<nav class='navbar navbar-inverse navbar-fixed-top'>
+  <div class='container-fluid'>
+    <div class='navbar-header'>
+      <button type='button' class='navbar-toggle' data-toggle='collapse' data-target='#myNavbar'>
+          <span class='icon-bar'></span>
+          <span class='icon-bar'></span>
+          <span class='icon-bar'></span>
+      </button>
+      <a class='navbar-brand' href='/'>PDX Adventures</a>
+    </div>
+    <div class="collapse navbar-collapse" id='myNavbar'>
+        <ul class='nav navbar-nav navbar-right'>
+        <li><a href='/add_event'>Add Event</a></li>
+        <li><a href='/activities'>See all Activities</a></li>
+        <li><a href='https://github.com/BabaYaga64/PDXAdventures.git'><i class="fa fa-github"></i></a></li>
+        <!-- <li><form action='/' method='post'> -->
+        </form>
+      </ul>
+    </div>
+  </div>
+</nav>
+<section>
+<div class='container text-center'>
+<br>
+<br>
+<br>
+    <h1 class='text-center'>You created an event</h1>
+        <dl class='dl-horizontal text-justify'>
+        <dt>Name</dt>
+        <dd>{{ event.getEventName }}</dd>
+        <dt>Date</dt>
+        <dd>{{ event.getDateEvent }}</dd>
+        <dt>Location</dt>
+        <dd>{{ event.getLocation }}</dd>
+        <dt>Description</dt>
+        <dd>{{ event.getDescription }}</dd>
+        <dt>Contact name</dt>
+        <dd>{{ user.getName }}</dd>
+        <dt>Contact email</dt>
+        <dd>{{ user.getEmail }}</dd>
+        <dt>Contact Phone</dt>
+        <dd>{{ user.getPhone }}</dd>
+
+    <dt> Under the category:</dt>
     {% if activities_associated is not empty %}
         {% for activity in activities_associated %}
-            <li>{{ activity.getActivityName }}</li>
+            <dd>{{ activity.getActivityName }}</dd>
         {% endfor %}
     {% endif %}
-        </ul>
-    <p> The contact information for this event is:</p>
-    <ul>
-        <li>{{ user.getName }}</li>
-        <li>{{ user.getEmail }}</li>
-        <li>{{ user.getPhone }}</li>
-    </ul>
-
-    <a href='/'>Return to home</a>
-    <a href='/event/{{ event.getId }}/edit'>Edit this event</a>
+</dl>
+    <button type='submit'><a class='text-center' href='/'>Finish</a></button>
+    <button type='submit'><a class='text-center' href='/event/{{ event.getId }}/edit'>Edit this event</a></button>
 </body>
+</div>
 </html>
