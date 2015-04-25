@@ -12,7 +12,7 @@ It uses Composer to install:
 To view the app, start your php server in the web folder and then navigate to your root path.
 
 
-###Copyright (c) 2015 Kyle Giard-Chase
+###Copyright (c) 2015 Kyle Giard-Chase Kelly de Vries, David Eliason, Brian Kropff, Bojana Skarich
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
