@@ -27,7 +27,7 @@ It uses <a href='https://getcomposer.org/'>Composer</a> to install:
 ##Database
 1. Create a new database `CREATE DATABASE pdx_adventure;`<br>
 2. Connect to the database `\c pdx_adventure;`<br>
-3. In your command shell, and in the top level of your home directory, import the database `\i pdx_adventure.sql`<br>
+3. Import the database `\i pdx_adventure.sql`<br>
 4. If you would like to edit the app and make use of the test database, `CREATE DATABASE pdx_adventure_test WITH TEMPLATE pdx_adventure`<br>
 5. NOTE: If the database fails to import (see above), you may manually create it using the following commands:<br>
 ```sql
