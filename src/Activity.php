@@ -8,7 +8,6 @@
             {
                 $this->id = $id_new;
                 $this->activity_name = $activity_new;
-
             }
 
             function getId()
@@ -50,25 +49,23 @@
                         $found = $activity;
                     }
                 }
-              return $found;
+                return $found;
             }
 
             function addEvent($event)
             {
                 $GLOBALS['DB']->exec("INSERT INTO activities_events (activity_id, event_id) VALUES ({$this->getId()}, {$event->getId()});");
-
             }
-
 
             function getEvents()
             {
                 $query = $GLOBALS['DB']->query("SELECT events.* FROM
                 activities JOIN activities_events ON (activities.id = activities_events.activity_id) JOIN events ON (activities_events.event_id = events.id)
                 WHERE activities.id = {$this->getId()};");
-            $event_ids = $query->fetchAll(PDO::FETCH_ASSOC);
+                $event_ids = $query->fetchAll(PDO::FETCH_ASSOC);
 
-            $events = array();
-            foreach($event_ids as $event) {
+                $events = array();
+                foreach($event_ids as $event) {
                     $date_event = $event['date_event'];
                     $description = $event['description'];
                     $event_name = $event['event_name'];
@@ -86,7 +83,7 @@
                 $statement = $GLOBALS['DB']->query("SELECT * FROM activities;");
                 $all_activities = [];
 
-                foreach($statement as $activity){
+                foreach($statement as $activity) {
                     $activity_name = $activity['activity_name'];
                     $id = $activity['id'];
                     $activity_item = new Activity($activity_name, $id);

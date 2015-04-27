@@ -1,69 +1,66 @@
 <html>
 <head>
     <meta charset='utf-8'>
-  <title>PDX Adventures</title>
-  <link rel ='stylesheet' href ='http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css'>
-  <link rel ='stylesheet' href ='http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css'>
-  <link rel ='stylesheet' href ='../css/style.css'>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-  <script src='http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js'></script>
+    <title>PDX Adventures</title>
+    <link rel ='stylesheet' href ='http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css'>
+    <link rel ='stylesheet' href ='http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css'>
+    <link rel ='stylesheet' href ='../css/style.css'>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script src='http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js'></script>
 </head>
 <body>
     <nav class='navbar navbar-inverse navbar-fixed-top'>
-      <div class='container-fluid'>
-        <div class='navbar-header'>
-          <button type='button' class='navbar-toggle' data-toggle='collapse' data-target='#myNavbar'>
-              <span class='icon-bar'></span>
-              <span class='icon-bar'></span>
-              <span class='icon-bar'></span>
-          </button>
-          <a class='navbar-brand' href='/'>PDX Adventures</a>
+        <div class='container-fluid'>
+            <div class='navbar-header'>
+                <button type='button' class='navbar-toggle' data-toggle='collapse' data-target='#myNavbar'>
+                    <span class='icon-bar'></span>
+                    <span class='icon-bar'></span>
+                    <span class='icon-bar'></span>
+                </button>
+                <a class='navbar-brand' href='/'>PDX Adventures</a>
+            </div>
+            <div class="collapse navbar-collapse" id='myNavbar'>
+                <ul class='nav navbar-nav navbar-right'>
+                    <li><a href='/add_event'>Add Event</a></li>
+                    <li><a href='/activities'>See all Activities</a></li>
+                    <li><a href='https://github.com/BabaYaga64/PDXAdventures.git'><i class="fa fa-github"></i></a></li>
+                </ul>
+            </div>
         </div>
-        <div class="collapse navbar-collapse" id='myNavbar'>
-            <ul class='nav navbar-nav navbar-right'>
-            <li><a href='/add_event'>Add Event</a></li>
-            <li><a href='/activities'>See all Activities</a></li>
-            <li><a href='https://github.com/BabaYaga64/PDXAdventures.git'><i class="fa fa-github"></i></a></li>
-            <!-- <li><form action='/' method='post'> -->
-            </form>
-          </ul>
-        </div>
-      </div>
     </nav>
-      <header>
-        <div class='jumbotron text-center'>
-          <div class='container'>
-          <br>
-          <br>
-          <br>
-          <h1>PDX Adventures</h1>
-          <h4>{{ activities.getActivityName }}</h4>
-          <ul class='list-unstyled list-inline social-media'>
-              <li><a href="/activities/1"><i class="fa fa-tree fa-2x"></i></a></li>
-              <li><a href="/activities/2"><i class="fa fa-futbol-o fa-2x"></i></a></li>
-              <li><a href="/activities/3"><i class="fa fa-bicycle fa-2x"></i></a></li>
-              <li><a href="/activities/4"><i class="fa fa-life-ring fa-2x"></i></a></li>
-              <li><a href="/activities/5"><i class="fa fa-paw fa-2x"></i></a></li>
-          </ul>
+    <header>
+        <div class='container'>
+            <div class='jumbotron text-center'>
+            <br>
+            <br>
+            <br>
+            <h1>PDX Adventures</h1>
+            <h4>{{ activities.getActivityName }}</h4>
+            <ul class='list-unstyled list-inline social-media'>
+                <li><a href="/activities/1"><i class="fa fa-tree fa-2x"></i></a></li>
+                <li><a href="/activities/2"><i class="fa fa-futbol-o fa-2x"></i></a></li>
+                <li><a href="/activities/3"><i class="fa fa-bicycle fa-2x"></i></a></li>
+                <li><a href="/activities/4"><i class="fa fa-life-ring fa-2x"></i></a></li>
+                <li><a href="/activities/5"><i class="fa fa-paw fa-2x"></i></a></li>
+            </ul>
             <p class='double-arrow'><i class="fa fa-angle-double-down fa-2x"></i></p>
-          </div>
+            </div>
         </div>
     </header>
+    <section>
+        <div class='container text-center top-border'>
+        <h4>{{ activities.getActivityName}}</h4>
 
-      <section>
-      <div class='container text-center top-border'>
-
-          <h4>{{ activities.getActivityName}}</h4>
-
-            {% if events is not empty %}
-              <ul class='list-unstyled list-inline social-media'>
+        {% if events is not empty %}
+            <ul class='list-unstyled list-inline social-media'>
                 <li>
                     {% for event in events %}
                         {{ event.getEventName }}
                         {{ event.getDateEvent }}
                         <p><a href='/event/{{ event.getId }}'>Click for more info</a></p>
-                    {% endfor %}</li>
-              </ul>
+                    {% endfor %}
+                </li>
+            </ul>
 
             <p><a href='/add_event'>Add an event</a></p>
 
@@ -72,11 +69,6 @@
             <p><a href='/add_event'>Add an event</a></p>
         {% endif %}
      </div>
-
     </section>
-
-
-
-
 </body>
 </html>

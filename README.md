@@ -33,7 +33,7 @@ It uses <a href='https://getcomposer.org/'>Composer</a> to install:
 ```sql
 CREATE DATABASE pdx_adventure;
  \c pdx_adventure
-CREATE TABLE activities (id serial PRIMARY KEY, activity_id int);
+CREATE TABLE activities (id serial PRIMARY KEY, activity_name int);
 CREATE TABLE events (id serial PRIMARY KEY, date_event timestamp, description varchar, event_name varchar, location varchar, user_id int);
 CREATE TABLE users (id serial PRIMARY KEY, name varchar, email varchar, phone varchar);
 CREATE TABLE activities_events (id serial PRIMARY KEY, activity_id int, event_id int);
