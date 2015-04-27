@@ -15,16 +15,6 @@
             $this->id = $id;
         }
 
-        // function getEventId()
-        // {
-        //     return $this->event_id;
-        // }
-        //
-        // function setEventId($event_id)
-        // {
-        //     $this->event_id = (string) $event_id;
-        // }
-
         function getName()
         {
             return $this->name;
@@ -70,9 +60,6 @@
             $GLOBALS['DB']->exec("DELETE FROM users WHERE id ={$this->getId()};");
         }
 
-
-        //$id, $date, $description, $event_name, $location, $user_id
-
         static function find($search_id)
         {
             $found_user = null;
@@ -85,7 +72,7 @@
                     $found_user = $user;
                 }
             }
-          return $found_user;
+            return $found_user;
         }
 
         function save()

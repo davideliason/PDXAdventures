@@ -88,33 +88,33 @@
             $statement = $GLOBALS['DB']->query("INSERT INTO events (date_event, description, event_name, location, user_id) VALUES ('{$this->getDateEvent()}', '{$this->getDescription()}', '{$this->getEventName()}', '{$this->getLocation()}', {$this->getUserId()}) RETURNING id;");
             $result = $statement->fetch(PDO::FETCH_ASSOC);
             $this->setId($result['id']);
-         }
+        }
 
          function update ($date2, $description2, $event_name2, $location2, $user_id2)
-         {
-             $GLOBALS['DB']->exec("UPDATE events SET (date_event, description, event_name, location, user_id) = ('{$date2}', '{$description2}', '{$event_name2}', '{$location2}', {$user_id2}) WHERE id =  {$this->getId()};");
-             $this->setDate($date2);
-             $this->setDescription($description2);
-             $this->setEventName($event_name2);
-             $this->setLocation($location2);
-             $this->setUserId($user_id2);
-         }
+        {
+            $GLOBALS['DB']->exec("UPDATE events SET (date_event, description, event_name, location, user_id) = ('{$date2}', '{$description2}', '{$event_name2}', '{$location2}', {$user_id2}) WHERE id =  {$this->getId()};");
+            $this->setDate($date2);
+            $this->setDescription($description2);
+            $this->setEventName($event_name2);
+            $this->setLocation($location2);
+            $this->setUserId($user_id2);
+        }
 
          static function find($search_id)
-         {
-             $found_event = null;
-             $events = Event::getAll();
-             foreach ($events as $event)
+        {
+            $found_event = null;
+            $events = Event::getAll();
+            foreach ($events as $event)
+            {
+             //getting event_id on Event id object
+             $event_id = $event->getId();
+             if ($event_id == $search_id)
              {
-                 //getting event_id on Event id object
-                 $event_id = $event->getId();
-                 if ($event_id == $search_id)
-                 {
-                     $found_event = $event;
-                 }
+                 $found_event = $event;
              }
-           return $found_event;
-         }
+            }
+            return $found_event;
+        }
 
          function addActivity($activity)
          {
@@ -123,7 +123,7 @@
 
          function getActivities()
          {
-             $query = $GLOBALS['DB']->query("SELECT activities.* FROM
+            $query = $GLOBALS['DB']->query("SELECT activities.* FROM
                  events JOIN activities_events ON (events.id = activities_events.event_id)
                         JOIN activities ON (activities_events.activity_id = activities.id)
                         WHERE events.id = {$this->getId()};");
@@ -140,48 +140,48 @@
          }
 
          function getUsers()
-         {
-             $query = $GLOBALS['DB']->query("SELECT * FROM users WHERE id = {$this->getUserId()};");
-             $returned_user = $query->fetchAll(PDO::FETCH_ASSOC);
-             $users_array = array();
+        {
+            $query = $GLOBALS['DB']->query("SELECT * FROM users WHERE id = {$this->getUserId()};");
+            $returned_user = $query->fetchAll(PDO::FETCH_ASSOC);
+            $users_array = array();
 
-             foreach($returned_user as $user) {
-                 $name = $user['name'];
-                 $email = $user['email'];
-                 $phone = $user['phone'];
-                 $id = $user['id'];
-                 $new_user = new User($name, $email, $phone, $id);
-                 array_push($users_array, $new_user);
-             }
-             return $users_array;
-         }
+            foreach($returned_user as $user) {
+             $name = $user['name'];
+             $email = $user['email'];
+             $phone = $user['phone'];
+             $id = $user['id'];
+             $new_user = new User($name, $email, $phone, $id);
+             array_push($users_array, $new_user);
+            }
+            return $users_array;
+        }
 
          static function getAll()
-         {
-             $returned_events = $GLOBALS['DB']->query("SELECT * FROM events;");
-             $events = array();
-             foreach($returned_events as $event) {
-                 $id = $event['id'];
-                 $date_event = $event['date_event'];
-                 $description = $event['description'];
-                 $event_name = $event['event_name'];
-                 $location = $event['location'];
-                 $user_id = $event['user_id'];
-                 $new_event = new Event($date_event, $description, $event_name, $location, $user_id, $id);
-                 array_push($events, $new_event);
-             }
-             return $events;
+        {
+         $returned_events = $GLOBALS['DB']->query("SELECT * FROM events;");
+         $events = array();
+         foreach($returned_events as $event) {
+             $id = $event['id'];
+             $date_event = $event['date_event'];
+             $description = $event['description'];
+             $event_name = $event['event_name'];
+             $location = $event['location'];
+             $user_id = $event['user_id'];
+             $new_event = new Event($date_event, $description, $event_name, $location, $user_id, $id);
+             array_push($events, $new_event);
          }
+         return $events;
+        }
 
-         function delete()
-         {
-             $GLOBALS['DB']->exec("DELETE FROM events WHERE id = {$this->getId()};");
-         }
+        function delete()
+        {
+         $GLOBALS['DB']->exec("DELETE FROM events WHERE id = {$this->getId()};");
+        }
 
-         static function deleteAll()
-         {
-             $GLOBALS['DB']->exec("DELETE FROM events *;");
-         }
+        static function deleteAll()
+        {
+         $GLOBALS['DB']->exec("DELETE FROM events *;");
+        }
 
 
 
