@@ -42,6 +42,8 @@ CREATE DATABASE pdx_adventure_test WITH TEMPLATE pdx_adventure;
 ##Known bugs
 To date, the following need to be updated:<br>
 1. The filter will return multiple of the same events if that event has more than one activity lined up with the user's search.
+2. The icons on the home page are not all displaying.
+3. The top right menu is inconsistently functioning when rendering a mobile layout.
 
 ###Copyright (c) 2015 Kyle Giard-Chase Kelly de Vries, David Eliason, Brian Kropff, Bojana Skarich
 
