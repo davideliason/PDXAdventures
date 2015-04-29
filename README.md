@@ -13,7 +13,7 @@ It uses <a href='https://getcomposer.org/'>Composer</a> to install:
 
 #Setup instructions:#
 
-To view online: point your browser to  `http://pdx-adventures.herokuapp.com`
+To view online: point your browser to `<a href="http://pdx-adventures.herokuapp.com> http://pdx-adventures.herokuapp.com</a>`
 
 OR
 
