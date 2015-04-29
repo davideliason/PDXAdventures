@@ -12,6 +12,13 @@ It uses <a href='https://getcomposer.org/'>Composer</a> to install:
 
 
 #Setup instructions:#
+
+To view online: point your browser to  `http://pdx-adventures.herokuapp.com`
+
+OR
+
+View on your local machine:
+
 1.  PHP must be installed on your machine (consult other sources for tutorials)
 
 2.  In your terminal:
