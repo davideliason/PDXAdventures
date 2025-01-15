@@ -1,13 +1,13 @@
 
 ![pdx_adventures](https://github.com/user-attachments/assets/2a34789d-e25d-4bb0-a251-dd2ed83f3305)
 
-###Developers
+### Developers
 Kelly de Vries, David Eliason, Kyle Giard-Chase, Brian Kropff, Bojana Skarich
 
-###Date
+### Date
 March 27, 2015
 
-###Description
+### Description
 PDX Adventures aggregates outdoor activities in the Portland area into a searchable, user-friendly format.  
 
 It uses <a href='https://getcomposer.org/'>Composer</a> to install:
@@ -34,7 +34,7 @@ View on your local machine:
   7. Start a php server `php -S localhost:8000`
   8. In a web browser window, navigate to `localhost:8000`
 
-##Database
+## Database
 1. Create a new database `CREATE DATABASE pdx_adventure;`<br>
 2. Connect to the database `\c pdx_adventure;`<br>
 3. Import the database `\i pdx_adventure.sql`<br>
@@ -49,7 +49,7 @@ CREATE TABLE users (id serial PRIMARY KEY, name varchar, email varchar, phone va
 CREATE TABLE activities_events (id serial PRIMARY KEY, activity_id int, event_id int);
 CREATE DATABASE pdx_adventure_test WITH TEMPLATE pdx_adventure;
 ```
-##Known bugs
+## Known bugs
 To date, the following need to be updated:<br>
 1. The filter will return multiple of the same events if that event has more than one activity lined up with the user's search.
 2. The icons on the home page are not all displaying.
