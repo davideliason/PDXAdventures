@@ -1,3 +1,6 @@
+
+![pdx_adventures](https://github.com/user-attachments/assets/2a34789d-e25d-4bb0-a251-dd2ed83f3305)
+
 ###Developers
 Kelly de Vries, David Eliason, Kyle Giard-Chase, Brian Kropff, Bojana Skarich
 
