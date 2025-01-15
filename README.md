@@ -14,7 +14,7 @@ It uses <a href='https://getcomposer.org/'>Composer</a> to install:
 <a href="https://phpunit.de/" target="_blank">PHPUnit</a>, <a href="http://silex.sensiolabs.org/" target="_blank">Silex</a>, and <a href="http://twig.sensiolabs.org/" target="_blank">Twig</a>.  It also links to a <a href="http://www.bootstrapcdn.com/" target="_blank">Bootstrap</a> CDN for CSS Styling.
 
 
-#Setup instructions:#
+# Setup instructions:
 
 To view online: point your browser to <a href="http://pdx-adventures.herokuapp.com"> http://pdx-adventures.herokuapp.com</a>
 
